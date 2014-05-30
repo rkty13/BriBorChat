@@ -1,5 +1,7 @@
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,6 +18,13 @@ public class ChatGUI extends JFrame{
         super("BBChat");
         textBox = new JTextField(20);
         sendMessage = new JButton();
+        sendMessage.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(final ActionEvent ae){
+                send();
+            }
+        });
+        
         
         final JPanel textPanel = new JPanel();
         textPanel.add(textBox);
@@ -30,6 +39,10 @@ public class ChatGUI extends JFrame{
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
+    }
+    
+    public static void send(){
+        String message = textBox.getText().trim();
     }
     
     public static void main(String[]args){
