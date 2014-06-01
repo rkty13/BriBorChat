@@ -18,6 +18,7 @@ public class ChatGUI extends JFrame{
     
     public ChatGUI(){
         super("BBChat");
+        JTextField jtf = new JTextField(20);
         textBox = new JTextField(20);
         sendButton = new JButton();
         sendButton.addActionListener(new ActionListener(){
@@ -29,8 +30,11 @@ public class ChatGUI extends JFrame{
         
         sendButton.setText("Send");
         
+        GhostText gt = new GhostText(textBox, "Message");
+        
         final JPanel textPanel = new JPanel();
         textPanel.add(new JLabel("Message:"));
+        //textPanel.add(jtf);
         textPanel.add(textBox);
         
         final JPanel sendButtonPanel = new JPanel();
