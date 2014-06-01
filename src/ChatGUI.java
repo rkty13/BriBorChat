@@ -34,7 +34,7 @@ public class ChatGUI extends JFrame{
         
         final JPanel textPanel = new JPanel();
         textPanel.add(new JLabel("Message:"));
-        //textPanel.add(jtf);
+        textPanel.add(jtf);
         textPanel.add(textBox);
         
         final JPanel sendButtonPanel = new JPanel();
