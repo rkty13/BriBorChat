@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -23,16 +24,10 @@ public class ChatGUI extends JFrame{
         super("BBChat");
         textBox = new JTextField(20);
         sendButton = new JButton();
-        ImageIcon buttonImage = getImageIcon("resources/HydraIcon.jpg");
+        
+        ImageIcon buttonImage = new ImageIcon("resources/HydraIcon.jpg");
         sendButton.setIcon(buttonImage);
-        /*
-        try{
-            Image img = ImageIO.read(getClass().getResource(
-                    "resources/hydraicon.jpg"));
-            sendButton.setIcon(new ImageIcon(img));
-        } catch(IOException ioe){
-        }
-         */
+         
         sendButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(final ActionEvent ae){
