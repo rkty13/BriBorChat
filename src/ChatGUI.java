@@ -1,9 +1,12 @@
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,9 +21,18 @@ public class ChatGUI extends JFrame{
     
     public ChatGUI(){
         super("BBChat");
-        JTextField jtf = new JTextField(20);
         textBox = new JTextField(20);
         sendButton = new JButton();
+        ImageIcon buttonImage = getImageIcon("resources/HydraIcon.jpg");
+        sendButton.setIcon(buttonImage);
+        /*
+        try{
+            Image img = ImageIO.read(getClass().getResource(
+                    "resources/hydraicon.jpg"));
+            sendButton.setIcon(new ImageIcon(img));
+        } catch(IOException ioe){
+        }
+         */
         sendButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(final ActionEvent ae){
@@ -28,13 +40,9 @@ public class ChatGUI extends JFrame{
             }
         });
         
-        sendButton.setText("Send");
-        
-        GhostText gt = new GhostText(textBox, "Message");
         
         final JPanel textPanel = new JPanel();
         textPanel.add(new JLabel("Message:"));
-        textPanel.add(jtf);
         textPanel.add(textBox);
         
         final JPanel sendButtonPanel = new JPanel();
@@ -46,13 +54,17 @@ public class ChatGUI extends JFrame{
         mainPanel.add(sendButtonPanel, BorderLayout.EAST);
         
         pack();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(450, 450));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
     }
     
+    private ImageIcon getImageIcon(String string) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
     public static void sendMessage(){
         String message = textBox.getText().trim();
     }
