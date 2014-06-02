@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -12,19 +13,32 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
 public class ChatGUI extends JFrame{
     private static final long serialVersionUID = 1L;
-    private static JTextField textBox;
+    private static JTextField MessageBox;
     private static JButton sendButton;
+    private static JTextArea chatBox;
     
     public ChatGUI(){
         super("BBChat");
-        textBox = new JTextField(20);
-        sendButton = new JButton();
+        MessageBox = new JTextField(20);
+        chatBox = new JTextArea(20, 50);
+        sendButton = new JButton("Send");
         
+        JLabel messageLabel = new JLabel("Message:");
+        messageLabel.setDisplayedMnemonic('M');
+        messageLabel.setLabelFor(MessageBox);
+        
+        JScrollPane scrollPane = new JScrollPane(chatBox);
+        chatBox.setEditable(false);
+        
+        sendButton.setMnemonic(KeyEvent.VK_S);
         ImageIcon buttonImage = new ImageIcon("resources/HydraIcon.jpg");
         sendButton.setIcon(buttonImage);
          
@@ -35,18 +49,23 @@ public class ChatGUI extends JFrame{
             }
         });
         
+        JRootPane rootPane = getRootPane();
+        rootPane.setDefaultButton(sendButton);
+        
+        final JPanel chatPanel = new JPanel();
+        chatPanel.add(scrollPane);
         
         final JPanel textPanel = new JPanel();
-        textPanel.add(new JLabel("Message:"));
-        textPanel.add(textBox);
+        textPanel.add(messageLabel);
+        textPanel.add(MessageBox);
+        textPanel.add(sendButton);
         
-        final JPanel sendButtonPanel = new JPanel();
-        sendButtonPanel.add(sendButton);
+     
         
         final Container mainPanel = getContentPane();
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(textPanel, BorderLayout.CENTER);
-        mainPanel.add(sendButtonPanel, BorderLayout.EAST);
+        mainPanel.add(chatPanel, BorderLayout.CENTER);
+        mainPanel.add(textPanel, BorderLayout.SOUTH);
         
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       
@@ -54,14 +73,15 @@ public class ChatGUI extends JFrame{
         setResizable(false);
         setVisible(true);
     }
-    
-    private ImageIcon getImageIcon(String string) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
     public static void sendMessage(){
-        String message = textBox.getText().trim();
+        String message = MessageBox.getText();
+        if(message.equals("")){
+        } else {
+            MessageBox.setText("");
+            chatBox.append(message);
+            chatBox.append("\n");
+        }
     }
     
     public static void main(String[]args){
