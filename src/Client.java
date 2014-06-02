@@ -9,7 +9,8 @@ public class Client {
     public static void main(String[] args) throws IOException {
 
         if (args.length != 2) {
-            System.err.println("Usage: java Client <host name> <port number>");
+            System.err
+                    .println("Usage: java Client <host name> <port number>\nhost name: name of computer server is running on");
             System.exit(1);
         }
 
