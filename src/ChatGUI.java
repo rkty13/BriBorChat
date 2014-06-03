@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 public class ChatGUI extends JFrame{
     private static final long serialVersionUID = 1L;
     private static JTextField MessageBox;
-    private static JButton sendButton;
+    private static JButton sendButton, aboutButton;
     private static JTextArea chatBox;
     
     public ChatGUI(){
@@ -29,6 +29,7 @@ public class ChatGUI extends JFrame{
         MessageBox = new JTextField(20);
         chatBox = new JTextArea(20, 50);
         sendButton = new JButton("Send");
+        aboutButton = new JButton("About");
         
         JLabel messageLabel = new JLabel("Message:");
         messageLabel.setDisplayedMnemonic('M');
@@ -47,6 +48,9 @@ public class ChatGUI extends JFrame{
                 sendMessage();
             }
         });
+        
+        aboutButton.setMnemonic(KeyEvent.VK_A);
+        
         
         JRootPane rootPane = getRootPane();
         rootPane.setDefaultButton(sendButton);
