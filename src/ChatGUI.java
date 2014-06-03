@@ -18,7 +18,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-
 public class ChatGUI extends JFrame{
     private static final long serialVersionUID = 1L;
     private static JTextField MessageBox;
@@ -59,9 +58,7 @@ public class ChatGUI extends JFrame{
         textPanel.add(messageLabel);
         textPanel.add(MessageBox);
         textPanel.add(sendButton);
-        
-     
-        
+   
         final Container mainPanel = getContentPane();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(chatPanel, BorderLayout.CENTER);
@@ -87,5 +84,4 @@ public class ChatGUI extends JFrame{
     public static void main(String[]args){
         new ChatGUI();
     }
-    
 }
