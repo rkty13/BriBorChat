@@ -57,7 +57,7 @@ public class ChatGUI extends JFrame{
                 ImageIcon icon = new ImageIcon("resources/HydraIcon.jpg");
                 JOptionPane.showMessageDialog(null, "   The BBChat Project was created by Sophomores: Eric Kong, Parth Mistry, and Robert Kim.\n"
                         + "This program was designed to be an instant messenger program using Java GUI's and Java ServerSockets.\n"
-                        + "Robert Kim has contributed the least to this Project.", "About", JOptionPane.INFORMATION_MESSAGE, icon);
+                        + "Robert Kim has contributed the least work to this Project.", "About", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         });
         
