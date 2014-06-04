@@ -23,7 +23,7 @@ public class chatRoomGUI extends JFrame {
     private static final long serialVersionUID = 1L;
     private static JButton selectNameButton, chatRoom1, chatRoom2;
     private static JTextField nameField;
-    public static String name;
+    public static JLabel name;
 
     public chatRoomGUI() {
         super("BBChat");
@@ -79,8 +79,8 @@ public class chatRoomGUI extends JFrame {
             JOptionPane.showMessageDialog(null, "Your name cannot be blank!",
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            name = temp;
-            //JOptionPane.showMessageDialog(null, name); --> Test
+            name = new JLabel(temp);
+            JOptionPane.showMessageDialog(null, name);
         }
         nameField.setText("");
 
