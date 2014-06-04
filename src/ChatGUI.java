@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
@@ -21,15 +22,51 @@ import javax.swing.JTextField;
 
 public class ChatGUI extends JFrame{
     private static final long serialVersionUID = 1L;
-    private static JTextField MessageBox;
-    private static JButton sendButton;
+    private static JTextField MessageBox, namePrompt;
+    private static JButton sendButton, nameButton;
     private static JTextArea chatBox;
+    private static String name;
     
     public ChatGUI(){
         super("BBChat");
         MessageBox = new JTextField(20);
         chatBox = new JTextArea(20, 50);
         sendButton = new JButton("Send");
+        name = "Dr. B";
+        /*namePrompt = new JTextField(15);
+        nameButton = new JButton("Enter");
+        
+        JLabel nameLabel = new JLabel("Enter Name:");
+        nameLabel.setDisplayedMnemonic('N');
+        nameLabel.setLabelFor(namePrompt);
+        
+        final JPanel nameBox = new JPanel();
+        nameBox.add(nameLabel);
+        nameBox.add(namePrompt);
+        
+        nameButton.setMnemonic('E');
+        nameButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				name = namePrompt.getText();
+				if (name.equals("")) {
+					System.err.println("A name must be enterred in order to use the BBChat servers.");
+					//JOptionPane.showMessageDialog(this, name, "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+        
+        final Container namePanel = getContentPane();
+        namePanel.setLayout(new BorderLayout());
+        namePanel.add(nameBox, BorderLayout.NORTH);
+        namePanel.add(nameButton, BorderLayout.SOUTH);
+        
+        pack();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setVisible(true);
+        */
         
         JLabel messageLabel = new JLabel("Message:");
         messageLabel.setDisplayedMnemonic('M');
@@ -79,7 +116,7 @@ public class ChatGUI extends JFrame{
         if(message.equals("")){
         } else {
             MessageBox.setText("");
-            chatBox.append(message);
+            chatBox.append(name + ": " + message);
             chatBox.append("\n");
         }
     }
