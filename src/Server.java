@@ -12,6 +12,7 @@ public class Server {
 
     public static ArrayList<ClientThread> users = new ArrayList<ClientThread>();
     public static LinkedBlockingQueue<String> messages = new LinkedBlockingQueue<String>();
+    public static ServerSocket serverSocket;
 
     public static void main(String[] args) throws IOException {
 
@@ -22,29 +23,49 @@ public class Server {
 
         try {
 
-            ServerSocket serverSocket = new ServerSocket(
-                    Integer.parseInt(args[0]));
+            serverSocket = new ServerSocket(Integer.parseInt(args[0]));
 
-            while (true) {
-                Socket clientSocket = serverSocket.accept();
+            Thread connect = new Thread() {
+                public void run() {
+                    while (true) {
+                        try {
+                            Socket clientSocket = serverSocket.accept();
 
-                InetAddress inetAddress = clientSocket.getInetAddress();
+                            InetAddress inetAddress = clientSocket
+                                    .getInetAddress();
 
-                System.out.println("Client: " + inetAddress.getHostName()
-                        + " | " + inetAddress.getHostAddress() + " connected.");
+                            System.out.println("Client: "
+                                    + inetAddress.getHostName() + " | "
+                                    + inetAddress.getHostAddress()
+                                    + " connected.");
 
-                ClientThread thread = new ClientThread(clientSocket, "rkty13");
-                users.add(thread);
-                new Thread(thread).start();
-
-                while (!messages.isEmpty()) {
-                    String message = messages.remove();
-                    for (ClientThread user : users) {
-                        user.sendMessage(message);
+                            ClientThread thread = new ClientThread(
+                                    clientSocket, "rkty13");
+                            System.out.println(thread);
+                            users.add(thread);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-
                 }
-            }
+            };
+            connect.setDaemon(true);
+            connect.start();
+
+            Thread messageQueue = new Thread() {
+                public void run() {
+                    while (true) {
+                        while (!messages.isEmpty()) {
+                            String message = messages.remove();
+                            for (ClientThread user : users) {
+                                System.out.println("Sendings");
+                                user.sendMessage(message);
+                            }
+                        }
+                    }
+                }
+            };
+            messageQueue.start();
             /*
              * PrintWriter out = new PrintWriter(
              * clientSocket.getOutputStream(), true); BufferedReader in = new
@@ -73,7 +94,6 @@ class ClientThread implements Runnable {
         this.username = username;
         out = new PrintWriter(this.socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
     }
 
     @Override
@@ -82,6 +102,7 @@ class ClientThread implements Runnable {
             String message;
             while ((message = in.readLine()) != null) {
                 Server.messages.add(username + ": " + message);
+                System.out.println("Message '" + message + "' received.");
             }
         } catch (IOException e) {
             System.err.println(e);
