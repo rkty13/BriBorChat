@@ -21,7 +21,7 @@ public class Server {
 
 			while (true) {
 				Socket clientSocket = serverSocket.accept();
-
+ 
 				InetAddress inetAddress = clientSocket.getInetAddress();
 
 				System.out.println("Client: " + inetAddress.getHostName()
