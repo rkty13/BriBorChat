@@ -20,6 +20,7 @@ public class Client {
 		try {
 			Socket echoSocket = new Socket("67.81.222.76", portNumber);
 			System.out.println("Connection successful!");
+			
 			/*
 			PrintWriter out = new PrintWriter(echoSocket.getOutputStream(),
 					true);
