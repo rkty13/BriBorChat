@@ -18,14 +18,19 @@ public class Server {
 		try {
 			ServerSocket serverSocket = new ServerSocket(
 					Integer.parseInt(args[0]));
-			Socket clientSocket = serverSocket.accept();
-			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),
-					true);
-			BufferedReader in = new BufferedReader(new InputStreamReader(
-					clientSocket.getInputStream()));
-			String inputLine;
-			while ((inputLine = in.readLine()) != null) {
-				out.println(inputLine);
+			while (true) {
+				Socket clientSocket = serverSocket.accept();
+				System.out.println("Client accepted!");
+				/*
+				PrintWriter out = new PrintWriter(
+						clientSocket.getOutputStream(), true);
+				BufferedReader in = new BufferedReader(new InputStreamReader(
+						clientSocket.getInputStream()));
+				String inputLine;
+				while ((inputLine = in.readLine()) != null) {
+					out.println(inputLine);
+				}
+				*/
 			}
 		} catch (IOException e) {
 			System.out

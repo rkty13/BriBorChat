@@ -19,6 +19,8 @@ public class Client {
 
 		try {
 			Socket echoSocket = new Socket("67.81.222.76", portNumber);
+			System.out.println("Connection successful!");
+			/*
 			PrintWriter out = new PrintWriter(echoSocket.getOutputStream(),
 					true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -30,6 +32,7 @@ public class Client {
 				out.println(userInput);
 				System.out.println("echo: " + in.readLine());
 			}
+			*/
 		} catch (UnknownHostException e) {
 			System.err.println("Unknown Host: " + hostName);
 			System.exit(1);
