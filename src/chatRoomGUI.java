@@ -80,7 +80,7 @@ public class chatRoomGUI extends JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             name = temp;
-            JOptionPane.showMessageDialog(null, name);
+            //JOptionPane.showMessageDialog(null, name); --> Test
         }
         nameField.setText("");
 
