@@ -18,6 +18,7 @@ import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 public class ChatGUI extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -33,6 +34,7 @@ public class ChatGUI extends JFrame {
         sendButton = new JButton("Send");
         aboutButton = new JButton("About");
         name = "Dr. B";
+        
         /*namePrompt = new JTextField(15);
         nameButton = new JButton("Enter");
         
