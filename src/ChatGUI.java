@@ -25,7 +25,7 @@ public class ChatGUI extends JFrame {
     private static JTextField MessageBox, namePrompt;
     private static JButton sendButton, nameButton, aboutButton;
     private static JTextArea chatBox;
-    private static String n = chatRoomGUI.name;
+    private static JLabel n = chatRoomGUI.name;
 
     public ChatGUI(){
         super("BBChat");
@@ -131,7 +131,7 @@ public class ChatGUI extends JFrame {
         if (message.equals("")) {
         } else {
             MessageBox.setText("");
-            chatBox.append(n + ": " + message);
+            chatBox.append(n.getText() + ": " + message);
             chatBox.append("\n");
         }
     }

@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -80,6 +81,7 @@ public class chatRoomGUI extends JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             name = new JLabel(temp);
+            name.setForeground(Color.RED);
             JOptionPane.showMessageDialog(null, name);
         }
         nameField.setText("");
