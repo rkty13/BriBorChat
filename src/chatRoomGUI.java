@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 public class chatRoomGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static JButton selectButton;
-
+	
 	public chatRoomGUI() {
 		super("BBChat");
 
