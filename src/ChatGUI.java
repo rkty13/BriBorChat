@@ -19,19 +19,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-
-public class ChatGUI extends JFrame{
+public class ChatGUI extends JFrame {
     private static final long serialVersionUID = 1L;
     private static JTextField MessageBox, namePrompt;
-    private static JButton sendButton, nameButton;
+    private static JButton sendButton, nameButton, aboutButton;
     private static JTextArea chatBox;
     private static String name;
-    
+
     public ChatGUI(){
         super("BBChat");
         MessageBox = new JTextField(20);
         chatBox = new JTextArea(20, 50);
         sendButton = new JButton("Send");
+        aboutButton = new JButton("About");
         name = "Dr. B";
         /*namePrompt = new JTextField(15);
         nameButton = new JButton("Enter");
@@ -86,6 +86,17 @@ public class ChatGUI extends JFrame{
             }
         });
         
+        aboutButton.setMnemonic(KeyEvent.VK_A);
+        aboutButton.addActionListener(new ActionListener(){
+          @Override  
+            public void actionPerformed(final ActionEvent ae){
+              ImageIcon img = new ImageIcon("resources/HydraIcon.jpg");  
+              JOptionPane.showMessageDialog(null, "This project is an instant messenger program.\n"
+                      + "To do this we have used Java GUI's and Java ServerSockets.","About",JOptionPane.INFORMATION_MESSAGE, img);
+            }
+        });
+        
+        
         JRootPane rootPane = getRootPane();
         rootPane.setDefaultButton(sendButton);
         
@@ -97,12 +108,14 @@ public class ChatGUI extends JFrame{
         textPanel.add(MessageBox);
         textPanel.add(sendButton);
         
-     
+        final JPanel aboutPanel = new JPanel();
+        aboutPanel.add(aboutButton);
         
         final Container mainPanel = getContentPane();
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(chatPanel, BorderLayout.CENTER);
-        mainPanel.add(textPanel, BorderLayout.SOUTH);
+        mainPanel.add(chatPanel, BorderLayout.NORTH);
+        mainPanel.add(textPanel, BorderLayout.CENTER);
+        mainPanel.add(aboutPanel, BorderLayout.SOUTH);
         
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       
@@ -111,18 +124,18 @@ public class ChatGUI extends JFrame{
         setVisible(true);
     }
 
-    public static void sendMessage(){
+    public static void sendMessage() {
         String message = MessageBox.getText();
-        if(message.equals("")){
+        if (message.equals("")) {
         } else {
             MessageBox.setText("");
             chatBox.append(name + ": " + message);
             chatBox.append("\n");
         }
     }
-    
-    public static void main(String[]args){
+
+    public static void main(String[] args) {
         new ChatGUI();
     }
-    
+
 }
