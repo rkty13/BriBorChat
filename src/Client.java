@@ -6,11 +6,12 @@ import java.net.Socket;
 public class Client {
 
 	private DataInputStream in;
-	private static DataOutputStream out;
+	private DataOutputStream out;
 
 	public String username;
 
-	public Client() {
+	public Client(String username) {
+		this.username = username;
 		Socket socket = null;
 		try {
 			socket = new Socket("67.81.222.76", 18304);
@@ -36,7 +37,7 @@ public class Client {
 		}
 	}
 
-	public static void send(String message) {
+	public void send(String message) {
 		try {
 			out.writeUTF(message);
 		} catch (IOException e) {
@@ -46,7 +47,7 @@ public class Client {
 
 	public void receive() {
 		try {
-			ChatGUI.recieveMessage(in.readUTF());
+			ChatGUI.recieveMessage(username + ": " + in.readUTF());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
