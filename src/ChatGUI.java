@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -112,6 +113,7 @@ public class ChatGUI extends JFrame {
 		if (message.equals("")) {
 		} else {
 			MessageBox.setText("");
+			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 18));
 			chatBox.setForeground(randCol);
 			chatBox.append(n.getText() + ": " + message);
 			chatBox.append("\n");
