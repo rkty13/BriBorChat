@@ -29,10 +29,10 @@ public class ChatGUI extends JFrame {
 	private static JButton sendButton, aboutButton;
 	private static JTextArea chatBox;
 	private static JLabel n = chatRoomGUI.name;
-	private static ImageIcon hap, sad, annoy, cool, cry, exc, slp, spls, srsly, tng, wink, wond, wry;
-	private static Random rand;
-	private static Color randCol;
-	private static float r, g, b;
+	//private static Random rand;
+	//private static Color randCol;
+	//private static float r, g, b;
+	public static String senderName;
 
 	public ChatGUI() {
 		super(chatRoomGUI.chatRoomName);
@@ -40,14 +40,14 @@ public class ChatGUI extends JFrame {
 		chatBox = new JTextArea(20, 50);
 		sendButton = new JButton("Send");
 		aboutButton = new JButton("About");
+		/*
 		rand = new Random();
-		hap = new ImageIcon("Happy.jpg");
-		
 		r = rand.nextFloat();
 		g = rand.nextFloat();
 		b = rand.nextFloat();
 		randCol = new Color(r, g, b);
-
+		 */
+		
 		JLabel messageLabel = new JLabel("Message:");
 		messageLabel.setDisplayedMnemonic('M');
 		messageLabel.setLabelFor(MessageBox);
@@ -113,8 +113,18 @@ public class ChatGUI extends JFrame {
 		if (message.equals("")) {
 		} else {
 			MessageBox.setText("");
-			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
-			chatBox.setForeground(randCol);
+			//chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
+			//chatBox.setForeground(randCol);
+			chatBox.append(n.getText() + ": " + message);
+			chatBox.append("\n");
+		}
+	}
+	
+	public static void recieveMessage(String message){
+		if(message.equals("")){
+		} else {
+			//chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
+			//chatBox.setForeground(randCol);
 			chatBox.append(n.getText() + ": " + message);
 			chatBox.append("\n");
 		}
