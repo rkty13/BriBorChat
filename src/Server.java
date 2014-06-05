@@ -26,8 +26,7 @@ public class Server {
 				Socket connection = null;
 				try {
 					connection = serverSocket.accept();
-					System.out.println("Person 1 connected to session"
-							+ clientNum);
+					System.out.println("Client #" + clientNum + " connected");
 				} catch (IOException e) {
 					continue;
 				}
