@@ -88,6 +88,7 @@ class HandleClient implements Runnable {
 			while (true) {
 				try {
 					String message = in.readUTF();
+					System.out.println("Message: '" + message + "' received.");
 					Server.writeToAll(message, clientNum);
 				} catch (Exception e) {
 					System.err.println("Client #" + clientNum
