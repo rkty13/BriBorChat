@@ -28,7 +28,7 @@ public class ChatGUI extends JFrame {
     private static JLabel n = chatRoomGUI.name;
 
     public ChatGUI(){
-        super("BBChat");
+        super(chatRoomGUI.chatRoomName);
         MessageBox = new JTextField(20);
         chatBox = new JTextArea(20, 50);
         sendButton = new JButton("Send");

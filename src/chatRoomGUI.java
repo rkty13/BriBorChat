@@ -21,84 +21,100 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class chatRoomGUI extends JFrame {
-    private static final long serialVersionUID = 1L;
-    private static JButton selectNameButton, chatRoom1, chatRoom2;
-    private static JTextField nameField;
-    public static JLabel name;
+	private static final long serialVersionUID = 1L;
+	private static JButton selectNameButton, chatRoom1, chatRoom2;
+	private static JTextField nameField;
+	public static JLabel name;
+	public static String chatRoomName;
 
-    public chatRoomGUI() {
-        super("BBChat");
-        nameField = new JTextField(10);
+	public chatRoomGUI() {
+		super("BBChat");
+		nameField = new JTextField(10);
 
-        selectNameButton = new JButton("Submit");
-        selectNameButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent ae) {
-                selectName();
-            }
-        });
+		selectNameButton = new JButton("Submit");
+		selectNameButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(final ActionEvent ae) {
+				selectName();
+			}
+		});
 
-        chatRoom1 = new JButton("Enter Chat Room # 1");
-        chatRoom2 = new JButton("Enter Chat Room # 2");
+		chatRoom1 = new JButton("Enter Chat Room # 1");
+		chatRoom2 = new JButton("Enter Chat Room # 2");
 
-        chatRoom1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent ae) {
-                enterChat1();
-            }
-        });
-        /*
-         * chatRoom2.addActionListener(new ActionListener() {
-         * 
-         * @Override public void actionPerformed(final ActionEvent ae) {
-         * 
-         * } });
-         */
-        final JPanel inputPanel = new JPanel();
-        inputPanel.add(nameField);
-        inputPanel.add(selectNameButton);
+		chatRoom1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(final ActionEvent ae) {
+				enterChat1();
+			}
+		});
 
-        final JPanel chatRoomButtons = new JPanel();
-        chatRoomButtons.add(chatRoom1);
-        chatRoomButtons.add(chatRoom2);
+		chatRoom2.addActionListener(new ActionListener() {
 
-        final Container mainPanel = getContentPane();
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(inputPanel, BorderLayout.SOUTH);
-        mainPanel.add(chatRoomButtons, BorderLayout.CENTER);
+			@Override
+			public void actionPerformed(final ActionEvent ae) {
+				enterChat2();
+			}
+		});
 
-        pack();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setVisible(true);
-    }
+		final JPanel inputPanel = new JPanel();
+		inputPanel.add(nameField);
+		inputPanel.add(selectNameButton);
 
-    private void selectName() {
-        String temp = nameField.getText().trim();
-        if (temp.equals("")) {
-            JOptionPane.showMessageDialog(null, "Your name cannot be blank!",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            name = new JLabel(temp);
-            name.setForeground(Color.RED);
-            JOptionPane.showMessageDialog(null, name);
-        }
-        nameField.setText("");
+		final JPanel chatRoomButtons = new JPanel();
+		chatRoomButtons.add(chatRoom1);
+		chatRoomButtons.add(chatRoom2);
 
-    }
+		final Container mainPanel = getContentPane();
+		mainPanel.setLayout(new BorderLayout());
+		mainPanel.add(inputPanel, BorderLayout.SOUTH);
+		mainPanel.add(chatRoomButtons, BorderLayout.CENTER);
 
-    private void enterChat1() {
-        if (name == null) {
-            JOptionPane.showMessageDialog(null,
-                    "Please enter your name before entering the chat.",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            new ChatGUI();
-        }
-    }
+		pack();
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setVisible(true);
+	}
 
-    public static void main(String[] args) {
-        new chatRoomGUI();
-    }
+	private void selectName() {
+		String temp = nameField.getText().trim();
+		if (temp.equals("")) {
+			JOptionPane.showMessageDialog(null, "Your name cannot be blank!",
+			        "Error", JOptionPane.ERROR_MESSAGE);
+		} else {
+			name = new JLabel(temp);
+			name.setForeground(Color.RED);
+			JOptionPane.showMessageDialog(null, name);
+		}
+		nameField.setText("");
+
+	}
+
+	private void enterChat1() {
+		if (name == null) {
+			JOptionPane.showMessageDialog(null,
+			        "Please enter your name before entering the chat.",
+			        "Error", JOptionPane.ERROR_MESSAGE);
+		} else {
+			chatRoomName = "BBChat ~ Room #1";
+			new ChatGUI();
+		}
+	}
+	
+	private void enterChat2(){
+		if(name == null){
+			JOptionPane.showMessageDialog(null,
+			        "Please enter your name before entering the chat.",
+			        "Error", JOptionPane.ERROR_MESSAGE);
+		} else {
+			chatRoomName = "BBChat ~ Room #2";
+			new ChatGUI();
+		}
+		
+	}
+
+	public static void main(String[] args) {
+		new chatRoomGUI();
+	}
 }
