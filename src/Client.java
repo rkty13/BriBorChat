@@ -7,7 +7,7 @@ public class Client {
 
 	private DataInputStream in;
 	private static DataOutputStream out;
-	
+
 	public String username;
 
 	public Client() {
@@ -16,21 +16,12 @@ public class Client {
 			socket = new Socket("67.81.222.76", 18304);
 			in = new DataInputStream(socket.getInputStream());
 			out = new DataOutputStream(socket.getOutputStream());
-			
+
 			/*
-			Thread sending = new Thread() {
-				public void run() {
-					try {
-						while (true) {
-							send();
-						}
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			};
-			sending.start();
-			*/
+			 * Thread sending = new Thread() { public void run() { try { while
+			 * (true) { send(); } } catch (IOException e) { e.printStackTrace();
+			 * } } }; sending.start();
+			 */
 
 			Thread receiving = new Thread() {
 				public void run() {
@@ -48,14 +39,14 @@ public class Client {
 	public static void send(String message) {
 		try {
 			out.writeUTF(message);
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void receive() {
 		try {
-			System.out.println(in.readUTF());
+			ChatGUI.recieveMessage(in.readUTF());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
