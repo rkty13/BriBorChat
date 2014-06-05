@@ -45,7 +45,7 @@ public class Client {
 		}
 	}
 
-	public void send(String message) {
+	public static void send(String message) {
 		try {
 			out.writeUTF(message);
 		} catch(IOException e) {
