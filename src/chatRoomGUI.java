@@ -64,11 +64,15 @@ public class chatRoomGUI extends JFrame {
 		final JPanel chatRoomButtons = new JPanel();
 		chatRoomButtons.add(chatRoom1);
 		chatRoomButtons.add(chatRoom2);
-
+		
+		final JPanel warningPanel = new JPanel();
+		warningPanel.add(new JLabel("*Warning: Please do not enter both chat rooms at once.*"));
+		
 		final Container mainPanel = getContentPane();
 		mainPanel.setLayout(new BorderLayout());
-		mainPanel.add(inputPanel, BorderLayout.SOUTH);
-		mainPanel.add(chatRoomButtons, BorderLayout.CENTER);
+		mainPanel.add(inputPanel, BorderLayout.CENTER);
+		mainPanel.add(chatRoomButtons, BorderLayout.NORTH);
+		mainPanel.add(warningPanel, BorderLayout.SOUTH);
 
 		pack();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

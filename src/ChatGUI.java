@@ -34,42 +34,6 @@ public class ChatGUI extends JFrame {
         sendButton = new JButton("Send");
         aboutButton = new JButton("About");
         
-        
-        /*namePrompt = new JTextField(15);
-        nameButton = new JButton("Enter");
-        
-        JLabel nameLabel = new JLabel("Enter Name:");
-        nameLabel.setDisplayedMnemonic('N');
-        nameLabel.setLabelFor(namePrompt);
-        
-        final JPanel nameBox = new JPanel();
-        nameBox.add(nameLabel);
-        nameBox.add(namePrompt);
-        
-        nameButton.setMnemonic('E');
-        nameButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				name = namePrompt.getText();
-				if (name.equals("")) {
-					System.err.println("A name must be enterred in order to use the BBChat servers.");
-					//JOptionPane.showMessageDialog(this, name, "Error", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
-        
-        final Container namePanel = getContentPane();
-        namePanel.setLayout(new BorderLayout());
-        namePanel.add(nameBox, BorderLayout.NORTH);
-        namePanel.add(nameButton, BorderLayout.SOUTH);
-        
-        pack();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setVisible(true);
-        */
-        
         JLabel messageLabel = new JLabel("Message:");
         messageLabel.setDisplayedMnemonic('M');
         messageLabel.setLabelFor(MessageBox);
