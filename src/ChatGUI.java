@@ -19,6 +19,7 @@ import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultCaret;
 
 public class ChatGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -35,6 +36,8 @@ public class ChatGUI extends JFrame {
 		super(chatRoomGUI.chatRoomName);
 		MessageBox = new JTextField(20);
 		chatBox = new JTextArea(20, 50);
+		DefaultCaret caret = (DefaultCaret)MessageBox.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		sendButton = new JButton("Send");
 		aboutButton = new JButton("About");
 		/*
