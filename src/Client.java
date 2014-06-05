@@ -7,13 +7,11 @@ public class Client {
 
 	private DataInputStream in;
 	private DataOutputStream out;
-	private ChatGUI gui;
 
 	public String username;
 
-	public Client(String username, ChatGUI gui) {
+	public Client(String username) {
 		this.username = username;
-		this.gui = gui;
 		Socket socket = null;
 		try {
 			socket = new Socket("67.81.222.76", 18304);
@@ -39,7 +37,7 @@ public class Client {
 		}
 	}
 
-	public void send(String message) {
+	public static void send(String message) {
 		try {
 			out.writeUTF(message);
 		} catch (IOException e) {
@@ -47,9 +45,9 @@ public class Client {
 		}
 	}
 
-	public void receive() {
+	public static void receive() {
 		try {
-			gui.recieveMessage(username + ": " + in.readUTF());
+			ChatGUI.recieveMessage(username + ": " + in.readUTF());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
