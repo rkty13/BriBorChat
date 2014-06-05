@@ -6,7 +6,7 @@ import java.net.Socket;
 public class Client {
 
 	private DataInputStream in;
-	private DataOutputStream out;
+	private static DataOutputStream out;
 
 	public String username;
 
