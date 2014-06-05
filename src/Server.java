@@ -1,115 +1,105 @@
-import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class Server {
 
-    public static ArrayList<ClientThread> users = new ArrayList<ClientThread>();
-    public static LinkedBlockingQueue<String> messages = new LinkedBlockingQueue<String>();
-    public static ServerSocket serverSocket;
+    public static ArrayList<HandleClient> clients;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+        new Server();
+    }
 
-        if (args.length != 1) {
-            System.err.println("Usage: java Server <port>");
-            System.exit(1);
-        }
-
+    @SuppressWarnings("resource")
+    public Server() {
+        clients = new ArrayList<HandleClient>();
+        ServerSocket serverSocket = null;
         try {
+            serverSocket = new ServerSocket(6066);
 
-            serverSocket = new ServerSocket(Integer.parseInt(args[0]));
+            int sessionNum = 1;
 
-            Thread connect = new Thread() {
-                public void run() {
-                    while (true) {
-                        try {
-                            Socket clientSocket = serverSocket.accept();
-
-                            InetAddress inetAddress = clientSocket
-                                    .getInetAddress();
-
-                            System.out.println("Client: "
-                                    + inetAddress.getHostName() + " | "
-                                    + inetAddress.getHostAddress()
-                                    + " connected.");
-
-                            ClientThread thread = new ClientThread(
-                                    clientSocket, "rkty13");
-                            System.out.println(thread);
-                            users.add(thread);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
+            while (true) {
+                Socket connection = null;
+                try {
+                    connection = serverSocket.accept();
+                    System.out.println("Person 1 connected to session"
+                            + sessionNum);
+                } catch (IOException e) {
+                    continue;
                 }
-            };
-            connect.setDaemon(true);
-            connect.start();
 
-            Thread messageQueue = new Thread() {
-                public void run() {
-                    while (true) {
-                        while (!messages.isEmpty()) {
-                            String message = messages.remove();
-                            for (ClientThread user : users) {
-                                System.out.println("Sendings");
-                                user.sendMessage(message);
-                            }
-                        }
-                    }
-                }
-            };
-            messageQueue.start();
-            /*
-             * PrintWriter out = new PrintWriter(
-             * clientSocket.getOutputStream(), true); BufferedReader in = new
-             * BufferedReader(new InputStreamReader(
-             * clientSocket.getInputStream())); String inputLine; while
-             * ((inputLine = in.readLine()) != null) { out.println(inputLine); }
-             */
+                HandleClient task = new HandleClient(connection, sessionNum);
+                clients.add(task);
+                new Thread(task).start();
+                sessionNum++;
+
+            }
         } catch (IOException e) {
-            System.out
-                    .println("Exception caught when trying to listen on port "
-                            + 18304 + " or listening for a connection");
-            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void remove(int sessionNum) {
+        for (int i = 0; i < clients.size(); i++) {
+            if (clients.get(i).sessionNum == sessionNum) {
+                clients.remove(i);
+            }
+        }
+    }
+
+    public static void writeToAll(String message) {
+        for (HandleClient client : clients) {
+            try {
+                client.sendMessage(message);
+            } catch (IOException e) {
+                System.err.println("Error sending to client #"
+                        + client.sessionNum);
+                continue;
+            }
         }
     }
 }
 
-class ClientThread implements Runnable {
+class HandleClient implements Runnable {
+    private Socket connection;
+    public int sessionNum;
+    private DataInputStream in;
+    private DataOutputStream out;
 
-    private Socket socket;
-    private String username;
-    private BufferedReader in;
-    private PrintWriter out;
-
-    public ClientThread(Socket socket, String username) throws IOException {
-        this.socket = socket;
-        this.username = username;
-        out = new PrintWriter(this.socket.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+    public HandleClient(Socket connection, int sessionNum) {
+        this.connection = connection;
+        this.sessionNum = sessionNum;
     }
 
     @Override
     public void run() {
         try {
-            String message;
-            while ((message = in.readLine()) != null) {
-                Server.messages.add(username + ": " + message);
-                System.out.println("Message '" + message + "' received.");
+
+            in = new DataInputStream(connection.getInputStream());
+            out = new DataOutputStream(connection.getOutputStream());
+
+            while (true) {
+                try {
+                    String message = in.readUTF();
+                    Server.writeToAll(message);
+                } catch (Exception e) {
+                    System.err.println("Client #" + sessionNum
+                            + " disconnected.");
+                    Server.remove(sessionNum);
+                    break;
+                }
             }
+
         } catch (IOException e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
     }
 
-    public void sendMessage(String message) {
-        out.println(message);
+    public void sendMessage(String message) throws IOException {
+        out.writeUTF(message);
     }
 }

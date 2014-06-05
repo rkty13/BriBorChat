@@ -10,3 +10,11 @@
 /chatRoomGUI.class
 /Server$1.class
 /Server$2.class
+/HandleASession.class
+/SessionWrapper$HandleClient.class
+/SessionWrapper.class
+/ClientWrapper.class
+/HandleClient.class
+/ClientWrapper$HandleClient.class
+/Client$1.class
+/Client$2.class
