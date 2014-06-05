@@ -26,6 +26,7 @@ public class ChatGUI extends JFrame {
 	private static JButton sendButton, aboutButton;
 	private static JTextArea chatBox;
 	private static JLabel n = chatRoomGUI.name;
+	private static ImageIcon hap, sad, annoy, cool, cry, exc, slp, spls, srsly, tng, wink, wond, wry;
 
 	public ChatGUI() {
 		super(chatRoomGUI.chatRoomName);
@@ -33,6 +34,7 @@ public class ChatGUI extends JFrame {
 		chatBox = new JTextArea(20, 50);
 		sendButton = new JButton("Send");
 		aboutButton = new JButton("About");
+		hap = new ImageIcon("Happy.jpg");
 
 		JLabel messageLabel = new JLabel("Message:");
 		messageLabel.setDisplayedMnemonic('M');
