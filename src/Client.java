@@ -14,7 +14,7 @@ public class Client {
         messageInput = new Scanner(System.in);
         Socket socket = null;
         try {
-            socket = new Socket("localhost", 6066);
+            socket = new Socket("67.81.222.76", 18304);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
             Thread sending = new Thread() {

@@ -18,7 +18,7 @@ public class Server {
 		clients = new ArrayList<HandleClient>();
 		ServerSocket serverSocket = null;
 		try {
-			serverSocket = new ServerSocket(6066);
+			serverSocket = new ServerSocket(18304);
 
 			int clientNum = 1;
 
@@ -103,6 +103,6 @@ class HandleClient implements Runnable {
 	}
 
 	public void sendMessage(String message) throws IOException {
-		out.writeUTF(message);
+		out.writeUTF(clientNum + message);
 	}
 }
