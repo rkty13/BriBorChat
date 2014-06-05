@@ -88,8 +88,8 @@ public class chatRoomGUI extends JFrame {
 			        "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			name = new JLabel(temp);
-			name.setForeground(Color.RED);
-			JOptionPane.showMessageDialog(null, name);
+			//name.setForeground(Color.RED);
+			//JOptionPane.showMessageDialog(null, name);
 		}
 		nameField.setText("");
 
