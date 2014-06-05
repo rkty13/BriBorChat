@@ -53,7 +53,6 @@ public class Client {
             System.out.println(in.readUTF());
         } catch (IOException e) {
             e.printStackTrace();
-            //System.err.println("error reading");
         }
     }
 
