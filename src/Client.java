@@ -5,13 +5,13 @@ import java.net.Socket;
 
 public class Client {
 
-	private DataInputStream in;
+	private static DataInputStream in;
 	private static DataOutputStream out;
 
-	public String username;
+	public static String username;
 
-	public Client(String username) {
-		this.username = username;
+	public Client(String username1) {
+		username = username1;
 		Socket socket = null;
 		try {
 			socket = new Socket("67.81.222.76", 18304);
