@@ -132,7 +132,6 @@ public class ChatGUI extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new Client();
 		new ChatGUI();
 	}
 
