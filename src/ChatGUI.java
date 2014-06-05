@@ -22,8 +22,8 @@ import javax.swing.JTextPane;
 
 public class ChatGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private static JTextField MessageBox, namePrompt;
-	private static JButton sendButton, nameButton, aboutButton;
+	private static JTextField MessageBox;
+	private static JButton sendButton, aboutButton;
 	private static JTextArea chatBox;
 	private static JLabel n = chatRoomGUI.name;
 

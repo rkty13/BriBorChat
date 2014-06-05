@@ -56,7 +56,10 @@ public class chatRoomGUI extends JFrame {
 				enterChat2();
 			}
 		});
-
+		
+		JRootPane rootPane =  getRootPane();
+		rootPane.setDefaultButton(selectNameButton);
+		
 		final JPanel inputPanel = new JPanel();
 		inputPanel.add(nameField);
 		inputPanel.add(selectNameButton);
