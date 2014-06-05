@@ -99,6 +99,7 @@ public class chatRoomGUI extends JFrame {
 		} else {
 			chatRoomName = "BBChat ~ Room #1";
 			new ChatGUI();
+			new Client();
 		}
 	}
 
@@ -110,12 +111,12 @@ public class chatRoomGUI extends JFrame {
 		} else {
 			chatRoomName = "BBChat ~ Room #2";
 			new ChatGUI();
+			new Client();
 		}
 
 	}
 
 	public static void main(String[] args) {
-		new Client();
 		new chatRoomGUI();
 	}
 }
