@@ -98,8 +98,8 @@ public class chatRoomGUI extends JFrame {
 			        "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			chatRoomName = "BBChat ~ Room #1";
-			new ChatGUI();
 			Client client1 = new Client(nameField.getText().trim());
+			new ChatGUI();
 		}
 	}
 
@@ -110,8 +110,8 @@ public class chatRoomGUI extends JFrame {
 			        "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			chatRoomName = "BBChat ~ Room #2";
-			new ChatGUI();
 			Client client2 = new Client(nameField.getText().trim());
+			new ChatGUI();
 		}
 
 	}

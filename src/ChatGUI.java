@@ -31,9 +31,12 @@ public class ChatGUI extends JFrame {
 	//private static Color randCol;
 	//private static float r, g, b;
 	public static String senderName;
-
-	public ChatGUI() {
+	
+	public Client client;
+	
+	public ChatGUI(Client client) {
 		super(chatRoomGUI.chatRoomName);
+		this.client = client;
 		MessageBox = new JTextField(20);
 		chatBox = new JTextArea(20, 50);
 		DefaultCaret caret = (DefaultCaret)MessageBox.getCaret();
