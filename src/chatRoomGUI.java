@@ -64,10 +64,11 @@ public class chatRoomGUI extends JFrame {
 		final JPanel chatRoomButtons = new JPanel();
 		chatRoomButtons.add(chatRoom1);
 		chatRoomButtons.add(chatRoom2);
-		
+
 		final JPanel warningPanel = new JPanel();
-		warningPanel.add(new JLabel("*Warning: Please do not enter both chat rooms at once.*"));
-		
+		warningPanel.add(new JLabel(
+		        "*Warning: Please do not enter both chat rooms at once.*"));
+
 		final Container mainPanel = getContentPane();
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.add(inputPanel, BorderLayout.CENTER);
@@ -88,8 +89,8 @@ public class chatRoomGUI extends JFrame {
 			        "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			name = new JLabel(temp);
-			//name.setForeground(Color.RED);
-			//JOptionPane.showMessageDialog(null, name);
+			// name.setForeground(Color.RED);
+			// JOptionPane.showMessageDialog(null, name);
 		}
 		nameField.setText("");
 
@@ -105,9 +106,9 @@ public class chatRoomGUI extends JFrame {
 			new ChatGUI();
 		}
 	}
-	
-	private void enterChat2(){
-		if(name == null){
+
+	private void enterChat2() {
+		if (name == null) {
 			JOptionPane.showMessageDialog(null,
 			        "Please enter your name before entering the chat.",
 			        "Error", JOptionPane.ERROR_MESSAGE);
@@ -115,7 +116,7 @@ public class chatRoomGUI extends JFrame {
 			chatRoomName = "BBChat ~ Room #2";
 			new ChatGUI();
 		}
-		
+
 	}
 
 	public static void main(String[] args) {
