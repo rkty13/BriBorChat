@@ -6,7 +6,7 @@ import java.net.Socket;
 public class Client {
 
 	private DataInputStream in;
-	private DataOutputStream out;
+	private static DataOutputStream out;
 	
 	public String username;
 
@@ -45,7 +45,7 @@ public class Client {
 		}
 	}
 
-	public void send(String message) {
+	public static void send(String message) {
 		try {
 			out.writeUTF(message);
 		} catch(IOException e) {

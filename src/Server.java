@@ -103,6 +103,6 @@ class HandleClient implements Runnable {
 	}
 
 	public void sendMessage(String message) throws IOException {
-		out.writeUTF(clientNum + message);
+		out.writeUTF(message);
 	}
 }
