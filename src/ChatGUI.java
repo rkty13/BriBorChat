@@ -124,7 +124,7 @@ public class ChatGUI extends JFrame {
 		}
 	}
 	
-	public void recieveMessage(String message){
+	public static void recieveMessage(String message){
 		if(message.equals("")){
 		} else {
 			//chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
