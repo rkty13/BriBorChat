@@ -119,7 +119,7 @@ public class ChatGUI extends JFrame {
 			//chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
 			//chatBox.setForeground(randCol);
 			Client.send(message);
-			chatBox.append( message);
+			chatBox.append(n.getText() + ": " + message);
 			chatBox.append("\n");
 		}
 	}
