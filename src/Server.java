@@ -33,6 +33,8 @@ public class Server {
                     inputName = new ObjectInputStream(
                             connection.getInputStream());
                     username = (String) inputName.readObject();
+                    new DataOutputStream(connection.getOutputStream())
+                            .writeBoolean(checkUserTaken(username));
                     System.out.println("Client #" + clientNum
                             + " connected as '" + username + "'.");
                 } catch (IOException e) {
@@ -100,7 +102,7 @@ public class Server {
             }
         }
     }
-    
+
     public boolean checkUserTaken(String username) {
         for (HandleClient client : clients) {
             if (client.username.equalsIgnoreCase(username)) {
@@ -153,18 +155,5 @@ class HandleClient implements Runnable {
     public void sendMessage(String message, String fromUsername)
             throws IOException {
         out.writeUTF(fromUsername + ": " + message);
-    }
-}
-
-@SuppressWarnings("serial")
-class Username implements Serializable {
-    public String username;
-
-    public Username(String username) {
-        this.username = username;
-    }
-
-    public String getUsername() {
-        return username;
     }
 }
