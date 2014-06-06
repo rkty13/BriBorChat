@@ -76,7 +76,7 @@ public class ChatGUI extends JFrame {
 		chatBox.setEditable(false);
 
 		sendButton.setMnemonic(KeyEvent.VK_S);
-		ImageIcon buttonImage = new ImageIcon("resources/HydraIcon.jpg");
+		ImageIcon buttonImage = new ImageIcon("resources/bb.jpg");
 		sendButton.setIcon(buttonImage);
 
 		sendButton.addActionListener(new ActionListener() {
@@ -90,7 +90,7 @@ public class ChatGUI extends JFrame {
 		aboutButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent ae) {
-				ImageIcon img = new ImageIcon("resources/HydraIcon.jpg");
+				ImageIcon img = new ImageIcon("resources/bb.jpg");
 				JOptionPane
 						.showMessageDialog(
 								null,
