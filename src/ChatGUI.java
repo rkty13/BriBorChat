@@ -83,7 +83,7 @@ public class ChatGUI extends JFrame {
 		DefaultCaret caret = (DefaultCaret) MessageBox.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		chatBox.setLineWrap(true);
-		sendButton = new JButton("Send");
+		sendButton = new JButton();
 		aboutButton = new JButton("About");
 		
 		rand = new Random();
