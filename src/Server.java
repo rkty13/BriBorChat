@@ -31,6 +31,8 @@ public class Server {
 					ObjectInputStream inputName = new ObjectInputStream(
 							connection.getInputStream());
 					username = (String) inputName.readObject();
+					System.out.println(username);
+					inputName.close();
 					// System.out.println(o.toString());
 					System.out.println("Client #" + clientNum + " connected");
 				} catch (IOException e) {
