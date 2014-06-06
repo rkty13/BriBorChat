@@ -39,7 +39,7 @@ public class ChatGUI extends JFrame {
 	private static JTextField MessageBox;
 	private static JButton sendButton, aboutButton;
 	private static JTextArea chatBox;
-	private static JLabel n = chatRoomGUI.name;
+	private static String n = chatRoomGUI.name.getText();
 	private static String listOfNames = "";
 	private static Random rand;
 	private static Color randCol1, randCol2;
@@ -57,7 +57,7 @@ public class ChatGUI extends JFrame {
 
 		super(chatRoomGUI.chatRoomName);
 
-		Username userClass = new Username(n.getText().trim());
+		Username userClass = new Username(n.trim());
 
 		Socket socket = null;
 		try {
@@ -170,14 +170,14 @@ public class ChatGUI extends JFrame {
 		};
 		receiving.start();
 	}
-
+	
 	public void sendMessage() {
 		String message = MessageBox.getText().trim();
 		if (message.trim().equals("")) {
 		} else {
 			MessageBox.setText("");
-			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
-			chatBox.setForeground(randCol1);
+			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 16));
+			//chatBox.setForeground(randCol1);
 
 			if (message.charAt(0) == '!' && message.length() != 1) {
 				if (message.trim().equalsIgnoreCase("!music")) {
@@ -204,7 +204,7 @@ public class ChatGUI extends JFrame {
 				}
 			} else {
 				send(message);
-				chatBox.append(n.getText() + ": " + message);
+				chatBox.append(n + ": " + message);
 				chatBox.append("\n");
 			}
 		}
@@ -217,7 +217,7 @@ public class ChatGUI extends JFrame {
 				.equals("82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42")) {
 			listOfNames = list[1];
 		} else {
-			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 18));
+			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 16));
 			//chatBox.setForeground(randCol2);
 			chatBox.append(message);
 			chatBox.append("\n");
