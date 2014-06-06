@@ -54,7 +54,9 @@ public class ChatGUI extends JFrame {
 			user.flush();
 
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Error: Could not connect to server. Please try again later.");
+			JOptionPane
+					.showMessageDialog(null,
+							"Error: Could not connect to server. Please try again later.");
 			System.exit(1);
 		}
 
@@ -98,9 +100,8 @@ public class ChatGUI extends JFrame {
 								null,
 								"This project is an instant messenger program written in Java by Eric Kong, Parth Mistry, and Robert Kim.\n"
 										+ "For this project, we have used Java GUI's and Java ServerSockets.\n"
-										+ "We hope you enjoy our program!"
-										+ "\nParth did nothing :P", "About",
-								JOptionPane.INFORMATION_MESSAGE, img);
+										+ "We hope you enjoy our program!",
+								"About", JOptionPane.INFORMATION_MESSAGE, img);
 			}
 		});
 
@@ -123,7 +124,7 @@ public class ChatGUI extends JFrame {
 		mainPanel.add(chatPanel, BorderLayout.NORTH);
 		mainPanel.add(textPanel, BorderLayout.CENTER);
 		mainPanel.add(aboutPanel, BorderLayout.SOUTH);
-		
+
 		chatRoomGUI.setDefaultUI();
 		pack();
 		setIconImage(new ImageIcon("resources/bb2.jpg").getImage());
