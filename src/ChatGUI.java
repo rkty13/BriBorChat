@@ -18,6 +18,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -59,10 +60,7 @@ public class ChatGUI extends JFrame {
 
 		Socket socket = null;
 		try {
-			// put attempting connection pane here
-			// System.out.println("Attempting connection");
 			socket = new Socket("67.81.222.76", 18304);
-			// close attempting connection pane here
 			in = new DataInputStream(socket.getInputStream());
 			out = new DataOutputStream(socket.getOutputStream());
 
@@ -150,7 +148,7 @@ public class ChatGUI extends JFrame {
 
 		chatRoomGUI.setDefaultUI();
 		pack();
-		setIconImage(new ImageIcon("resources/bb2.jpg").getImage());
+		setIconImage(new ImageIcon("src/resources/bb2.jpg").getImage());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -176,7 +174,7 @@ public class ChatGUI extends JFrame {
 
 			if (message.charAt(0) == '!' && message.length() != 1) {
 				if (message.trim().equalsIgnoreCase("!music")) {
-					File file = new File("resources/rickroll.wav");
+					File file = new File("src/resources/rickroll.wav");
 					try {
 						stream2 = AudioSystem.getAudioInputStream(file);
 						x2 = stream2.getFormat();
@@ -216,7 +214,7 @@ public class ChatGUI extends JFrame {
 			// chatBox.setForeground(randCol);
 			chatBox.append(message);
 			chatBox.append("\n");
-			File file = new File("resources/chatsound.WAV");
+			File file = new File("src/resources/chatsound.WAV");
 			try {
 				stream = AudioSystem.getAudioInputStream(file);
 				x = stream.getFormat();

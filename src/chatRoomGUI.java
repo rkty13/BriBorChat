@@ -75,7 +75,7 @@ public class chatRoomGUI extends JFrame {
 		
 		setDefaultUI();
 		pack();
-		setIconImage(new ImageIcon("resources/bb2.jpg").getImage());
+		setIconImage(new ImageIcon("src/resources/bb2.jpg").getImage());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
