@@ -2,7 +2,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -84,7 +83,7 @@ class HandleClient implements Runnable {
 	public int clientNum;
 	private DataInputStream in;
 	private DataOutputStream out;
-	public String username;
+	private String username;
 
 	public HandleClient(Socket connection, int clientNum, String username) {
 		this.connection = connection;
@@ -121,18 +120,5 @@ class HandleClient implements Runnable {
 	public void sendMessage(String message, String fromUsername)
 			throws IOException {
 		out.writeUTF(fromUsername + ": " + message);
-	}
-}
-
-@SuppressWarnings("serial")
-class Username implements Serializable {
-	public String username;
-
-	public Username(String username) {
-		this.username = username;
-	}
-
-	public String getUsername() {
-		return username;
 	}
 }

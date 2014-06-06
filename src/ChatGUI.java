@@ -7,10 +7,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -41,11 +39,11 @@ public class ChatGUI extends JFrame {
 	// private static Color randCol;
 	// private static float r, g, b;
 	public static String senderName;
-
+	
 	private static AudioInputStream stream, stream2;
 	private static AudioFormat x, x2;
 	private static Clip clip, clip2;
-
+	
 	private DataInputStream in;
 	private DataOutputStream out;
 
@@ -54,11 +52,11 @@ public class ChatGUI extends JFrame {
 		super(chatRoomGUI.chatRoomName);
 
 		Username userClass = new Username(n.getText().trim());
-
+		
 		Socket socket = null;
 		try {
 			// put attempting connection pane here
-			// System.out.println("Attempting connection");
+			//System.out.println("Attempting connection");
 			socket = new Socket("67.81.222.76", 18304);
 			// close attempting connection pane here
 			in = new DataInputStream(socket.getInputStream());
@@ -70,9 +68,7 @@ public class ChatGUI extends JFrame {
 			user.flush();
 
 		} catch (IOException e) {
-			JOptionPane
-					.showMessageDialog(null,
-							"Error: Could not connect to server. Please try again later.");
+			JOptionPane.showMessageDialog(null, "Error: Could not connect to server. Please try again later.");
 			System.exit(1);
 		}
 
@@ -141,7 +137,7 @@ public class ChatGUI extends JFrame {
 		mainPanel.add(chatPanel, BorderLayout.NORTH);
 		mainPanel.add(textPanel, BorderLayout.CENTER);
 		mainPanel.add(aboutPanel, BorderLayout.SOUTH);
-
+		
 		chatRoomGUI.setDefaultUI();
 		pack();
 		setIconImage(new ImageIcon("resources/bb2.jpg").getImage());
@@ -167,30 +163,30 @@ public class ChatGUI extends JFrame {
 			MessageBox.setText("");
 			// chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
 			// chatBox.setForeground(randCol);
-
-			if (message.charAt(0) == '!' && message.length() != 1) {
-				if (message.trim().equalsIgnoreCase("!music")) {
-					File file = new File("resources/rickroll.wav");
-					try {
-						stream2 = AudioSystem.getAudioInputStream(file);
-						x2 = stream2.getFormat();
-					} catch (UnsupportedAudioFileException | IOException e1) {
-						e1.printStackTrace();
-					}
-					DataLine.Info info = new DataLine.Info(Clip.class, x2);
-					try {
-						clip2 = (Clip) AudioSystem.getLine(info);
-						clip2.open(stream2);
-					} catch (LineUnavailableException e1) {
-						e1.printStackTrace();
-					} catch (IOException e2) {
-						e2.printStackTrace();
-					}
-					clip2.loop(100);
-				}
-				if (message.trim().equalsIgnoreCase("!StopMusic")) {
-					clip2.stop();
-				}
+			
+			if(message.charAt(0) == '!' && message.length() != 1){
+    			if(message.trim().equalsIgnoreCase("!music")){
+        			File file = new File("resources/rickroll.wav");
+        			try {
+        		        stream2 = AudioSystem.getAudioInputStream(file);
+        		        x2 = stream2.getFormat(); 
+        	        } catch (UnsupportedAudioFileException | IOException e1) {
+        		        e1.printStackTrace();
+        	        }
+        			DataLine.Info info = new DataLine.Info(Clip.class, x2);
+        			try {
+        		        clip2 = (Clip)AudioSystem.getLine(info);
+        		        clip2.open(stream2);
+        	        } catch (LineUnavailableException e1) {
+        		        e1.printStackTrace();
+        	        } catch (IOException e2){
+        	        	e2.printStackTrace();
+        	        }
+        			clip2.loop(100);
+    			}
+    			if(message.trim().equalsIgnoreCase("!StopMusic")){
+    				clip2.stop();
+    			}
 			} else {
 				send(message);
 				chatBox.append(n.getText() + ": " + message);
@@ -208,20 +204,20 @@ public class ChatGUI extends JFrame {
 			chatBox.append("\n");
 			File file = new File("resources/chatsound.WAV");
 			try {
-				stream = AudioSystem.getAudioInputStream(file);
-				x = stream.getFormat();
-			} catch (UnsupportedAudioFileException | IOException e1) {
-				e1.printStackTrace();
-			}
+		        stream = AudioSystem.getAudioInputStream(file);
+		        x = stream.getFormat(); 
+	        } catch (UnsupportedAudioFileException | IOException e1) {
+		        e1.printStackTrace();
+	        }
 			DataLine.Info info = new DataLine.Info(Clip.class, x);
 			try {
-				clip = (Clip) AudioSystem.getLine(info);
-				clip.open(stream);
-			} catch (LineUnavailableException e1) {
-				e1.printStackTrace();
-			} catch (IOException e2) {
-				e2.printStackTrace();
-			}
+		        clip = (Clip)AudioSystem.getLine(info);
+		        clip.open(stream);
+	        } catch (LineUnavailableException e1) {
+		        e1.printStackTrace();
+	        } catch (IOException e2){
+	        	e2.printStackTrace();
+	        }
 			clip.start();
 		}
 	}
