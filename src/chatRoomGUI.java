@@ -15,7 +15,8 @@ import javax.swing.UIManager;
 
 public class chatRoomGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private static JButton selectNameButton, chatRoom1, chatRoom2;
+	private static JButton selectNameButton, chatRoom1;
+	//private static JButton chatRoom2;
 	private static JTextField nameField;
 	public static JLabel name;
 	public static String chatRoomName;
@@ -32,8 +33,8 @@ public class chatRoomGUI extends JFrame {
 			}
 		});
 
-		chatRoom1 = new JButton("Enter Chat Room # 1");
-		chatRoom2 = new JButton("Enter Chat Room # 2");
+		chatRoom1 = new JButton("Enter Chat Room");
+		//chatRoom2 = new JButton("Enter Chat Room # 2");
 
 		chatRoom1.addActionListener(new ActionListener() {
 			@Override
@@ -41,7 +42,7 @@ public class chatRoomGUI extends JFrame {
 				enterChat1();
 			}
 		});
-
+		/*
 		chatRoom2.addActionListener(new ActionListener() {
 
 			@Override
@@ -49,7 +50,7 @@ public class chatRoomGUI extends JFrame {
 				enterChat2();
 			}
 		});
-		
+		*/
 		JRootPane rootPane =  getRootPane();
 		rootPane.setDefaultButton(selectNameButton);
 		
@@ -59,7 +60,7 @@ public class chatRoomGUI extends JFrame {
 
 		final JPanel chatRoomButtons = new JPanel();
 		chatRoomButtons.add(chatRoom1);
-		chatRoomButtons.add(chatRoom2);
+		//chatRoomButtons.add(chatRoom2);
 
 		final JPanel warningPanel = new JPanel();
 		warningPanel.add(new JLabel(
@@ -105,7 +106,7 @@ public class chatRoomGUI extends JFrame {
 			new ChatGUI();
 		}
 	}
-
+	/*
 	private void enterChat2() {
 		if (name == null) {
 			JOptionPane.showMessageDialog(null,
@@ -117,7 +118,7 @@ public class chatRoomGUI extends JFrame {
 		}
 
 	}
-	
+	*/
 	public static void setDefaultUI(){
 		try{
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
