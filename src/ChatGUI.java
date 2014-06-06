@@ -64,14 +64,14 @@ public class ChatGUI extends JFrame {
 			out = new DataOutputStream(socket.getOutputStream());
 
 			ObjectOutputStream user = new ObjectOutputStream(
-			        socket.getOutputStream());
+					socket.getOutputStream());
 			user.writeObject(userClass.username);
 			user.flush();
 
 		} catch (IOException e) {
 			JOptionPane
-			        .showMessageDialog(null,
-			                "Error: Could not connect to server. Please try again later.");
+					.showMessageDialog(null,
+							"Error: Could not connect to server. Please try again later.");
 			System.exit(1);
 		}
 
@@ -111,12 +111,12 @@ public class ChatGUI extends JFrame {
 			public void actionPerformed(final ActionEvent ae) {
 				ImageIcon img = new ImageIcon("resources/bb.jpg");
 				JOptionPane
-				        .showMessageDialog(
-				                null,
-				                "This project is an instant messenger program written in Java by Eric Kong, Parth Mistry, and Robert Kim.\n"
-				                        + "For this project, we have used Java GUI's and Java ServerSockets.\n"
-				                        + "We hope you enjoy our program!",
-				                "About", JOptionPane.INFORMATION_MESSAGE, img);
+						.showMessageDialog(
+								null,
+								"This project is an instant messenger program written in Java by Eric Kong, Parth Mistry, and Robert Kim.\n"
+										+ "For this project, we have used Java GUI's and Java ServerSockets.\n"
+										+ "We hope you enjoy our program!",
+								"About", JOptionPane.INFORMATION_MESSAGE, img);
 			}
 		});
 
@@ -202,11 +202,10 @@ public class ChatGUI extends JFrame {
 	}
 
 	public void recieveMessage(String message) {
+		String[] list = message.split(" ");
 		if (message.equals("")) {
-		} else if (message
-		        .substring(0, 65)
-		        .equals("82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42")) {
-			String[] list = message.split(" ");
+		} else if (list[1]
+				.equals("82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42")) {
 			listOfNames = list[1];
 		} else {
 			// chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
