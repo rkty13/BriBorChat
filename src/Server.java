@@ -76,6 +76,23 @@ public class Server {
 			}
 		}
 	}
+
+	public static void updateUserList() {
+		StringBuilder sb = new StringBuilder();
+		for (HandleClient client : clients) {
+			for (HandleClient name : clients) {
+				sb.append(name.username + "\n");
+			}
+			try {
+				client.sendMessage(sb.toString(),
+						"82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42");
+			} catch (IOException e) {
+				System.err.println("Error sending user list to client # "
+						+ client.clientNum);
+				continue;
+			}
+		}
+	}
 }
 
 class HandleClient implements Runnable {
@@ -83,7 +100,7 @@ class HandleClient implements Runnable {
 	public int clientNum;
 	private DataInputStream in;
 	private DataOutputStream out;
-	private String username;
+	public String username;
 
 	public HandleClient(Socket connection, int clientNum, String username) {
 		this.connection = connection;
