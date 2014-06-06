@@ -44,8 +44,9 @@ public class Server {
 				HandleClient task = new HandleClient(connection, clientNum,
 						username);
 				clients.add(task);
-				updateUserList();
+				
 				new Thread(task).start();
+				updateUserList();
 				clientNum++;
 
 			}
@@ -82,10 +83,13 @@ public class Server {
 	public static void updateUserList() {
 		StringBuilder sb = new StringBuilder();
 		for (HandleClient name : clients) {
+			System.out.println(name);
 			sb.append(name.username + "\n");
 		}
 		for (HandleClient client : clients) {
+			System.out.println(2);
 			try {
+				System.out.println(sb.toString());
 				client.sendMessage(sb.toString(),
 						"82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42");
 			} catch (IOException e) {
@@ -138,6 +142,8 @@ class HandleClient implements Runnable {
 
 	public void sendMessage(String message, String fromUsername)
 			throws IOException {
+		System.out.println(message);
+		System.out.println(fromUsername);
 		out.writeUTF(fromUsername + ": " + message);
 	}
 }
