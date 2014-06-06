@@ -176,7 +176,7 @@ public class ChatGUI extends JFrame {
 		if (message.trim().equals("")) {
 		} else {
 			MessageBox.setText("");
-			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 18));
+			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
 			chatBox.setForeground(randCol1);
 
 			if (message.charAt(0) == '!' && message.length() != 1) {
