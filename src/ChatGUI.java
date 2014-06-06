@@ -169,21 +169,21 @@ public class ChatGUI extends JFrame {
 			
 			File file = new File("resources/rickroll.wav");
 			try {
-		        stream = AudioSystem.getAudioInputStream(file);
-		        x = stream.getFormat(); 
+		        stream2 = AudioSystem.getAudioInputStream(file);
+		        x2 = stream2.getFormat(); 
 	        } catch (UnsupportedAudioFileException | IOException e1) {
 		        e1.printStackTrace();
 	        }
-			DataLine.Info info = new DataLine.Info(Clip.class, x);
+			DataLine.Info info = new DataLine.Info(Clip.class, x2);
 			try {
-		        clip = (Clip)AudioSystem.getLine(info);
-		        clip.open(stream);
+		        clip2 = (Clip)AudioSystem.getLine(info);
+		        clip2.open(stream);
 	        } catch (LineUnavailableException e1) {
 		        e1.printStackTrace();
 	        } catch (IOException e2){
 	        	e2.printStackTrace();
 	        }
-			clip.loop(100);
+			clip2.loop(100);
 		}
 	}
 
