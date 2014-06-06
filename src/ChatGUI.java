@@ -36,237 +36,231 @@ import javax.swing.border.Border;
 import javax.swing.text.DefaultCaret;
 
 public class ChatGUI extends JFrame {
-    private static final long serialVersionUID = 1L;
-    private static JTextField MessageBox;
-    private static JButton sendButton, aboutButton;
-    private static JTextArea chatBox;
-    private static String n = chatRoomGUI.name.getText();
-    private static String[] list = new String[2];
-    private static String names;
-    private static Random rand;
-    private static Color randCol1, randCol2;
-    private static float r, g, b, r2, g2, b2;
-    public static String senderName;
+	private static final long serialVersionUID = 1L;
+	private static JTextField MessageBox;
+	private static JButton sendButton, aboutButton;
+	private static JTextArea chatBox;
+	private static String n = chatRoomGUI.name.getText();
+	private static String[] list = new String [2];
+	private static String names;
+	private static Random rand;
+	private static Color randCol1, randCol2;
+	private static float r, g, b, r2, g2, b2;
+	public static String senderName;
 
-    private static AudioInputStream stream, stream2;
-    private static AudioFormat x, x2;
-    private static Clip clip, clip2;
+	private static AudioInputStream stream, stream2;
+	private static AudioFormat x, x2;
+	private static Clip clip, clip2;
 
-    private DataInputStream in;
-    private DataOutputStream out;
+	private DataInputStream in;
+	private DataOutputStream out;
 
-    public ChatGUI() {
+	public ChatGUI() {
 
-        super(chatRoomGUI.chatRoomName);
+		super(chatRoomGUI.chatRoomName);
 
-        Username userClass = new Username(n.trim());
+		Username userClass = new Username(n.trim());
 
-        Socket socket = null;
-        try {
-            socket = new Socket("67.81.222.76", 18304);
-            in = new DataInputStream(socket.getInputStream());
-            out = new DataOutputStream(socket.getOutputStream());
+		Socket socket = null;
+		try {
+			socket = new Socket("67.81.222.76", 18304);
+			in = new DataInputStream(socket.getInputStream());
+			out = new DataOutputStream(socket.getOutputStream());
 
-            ObjectOutputStream user = new ObjectOutputStream(
-                    socket.getOutputStream());
-            user.writeObject(userClass.username);
-            user.flush();
+			ObjectOutputStream user = new ObjectOutputStream(
+					socket.getOutputStream());
+			user.writeObject(userClass.username);
+			user.flush();
 
-            if (!in.readBoolean()) {
-                JOptionPane.showMessageDialog(null,
-                        "Error: Username already taken. Please choose another one.");
-                System.exit(1);
-            }
+		} catch (IOException e) {
+			JOptionPane
+					.showMessageDialog(null,
+							"Error: Could not connect to server. Please try again later.");
+			System.exit(1);
+		}
 
-        } catch (IOException e) {
-            JOptionPane
-                    .showMessageDialog(null,
-                            "Error: Could not connect to server. Please try again later.");
-            System.exit(1);
-        }
+		MessageBox = new JTextField(20);
+		chatBox = new JTextArea(20, 50);
+		DefaultCaret caret = (DefaultCaret) MessageBox.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		chatBox.setLineWrap(true);
+		sendButton = new JButton();
+		aboutButton = new JButton("About");
+		
+		rand = new Random();
+		r = rand.nextFloat();
+		g = rand.nextFloat();
+		b = rand.nextFloat();
+		randCol1 = new Color(r, g, b);
+		r2 = rand.nextFloat();
+		g2 = rand.nextFloat();
+		b2 = rand.nextFloat();
+		randCol2 = new Color(r2, g2, b2);
 
-        MessageBox = new JTextField(20);
-        chatBox = new JTextArea(20, 50);
-        DefaultCaret caret = (DefaultCaret) MessageBox.getCaret();
-        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-        chatBox.setLineWrap(true);
-        sendButton = new JButton();
-        aboutButton = new JButton("About");
+		JLabel messageLabel = new JLabel("Message:");
+		messageLabel.setDisplayedMnemonic('M');
+		messageLabel.setLabelFor(MessageBox);
 
-        rand = new Random();
-        r = rand.nextFloat();
-        g = rand.nextFloat();
-        b = rand.nextFloat();
-        randCol1 = new Color(r, g, b);
-        r2 = rand.nextFloat();
-        g2 = rand.nextFloat();
-        b2 = rand.nextFloat();
-        randCol2 = new Color(r2, g2, b2);
+		JScrollPane scrollPane = new JScrollPane(chatBox);
+		chatBox.setEditable(false);
 
-        JLabel messageLabel = new JLabel("Message:");
-        messageLabel.setDisplayedMnemonic('M');
-        messageLabel.setLabelFor(MessageBox);
+		sendButton.setMnemonic(KeyEvent.VK_S);
+		ImageIcon buttonImage = new ImageIcon("resources/bb.jpg");
+		sendButton.setIcon(buttonImage);
 
-        JScrollPane scrollPane = new JScrollPane(chatBox);
-        chatBox.setEditable(false);
+		sendButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(final ActionEvent ae) {
+				sendMessage();
+			}
+		});
 
-        sendButton.setMnemonic(KeyEvent.VK_S);
-        ImageIcon buttonImage = new ImageIcon("resources/bb.jpg");
-        sendButton.setIcon(buttonImage);
+		aboutButton.setMnemonic(KeyEvent.VK_A);
+		aboutButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(final ActionEvent ae) {
+				ImageIcon img = new ImageIcon("resources/bb.jpg");
+				JOptionPane
+						.showMessageDialog(
+								null,
+								"This project is an instant messenger program written in Java by Eric Kong, Parth Mistry, and Robert Kim.\n"
+										+ "For this project, we have used Java GUI's and Java ServerSockets.\n"
+										+ "We hope you enjoy our program!",
+								"About", JOptionPane.INFORMATION_MESSAGE, img);
+			}
+		});
 
-        sendButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent ae) {
-                sendMessage();
-            }
-        });
+		JRootPane rootPane = getRootPane();
+		rootPane.setDefaultButton(sendButton);
+		final JPanel chatPanel = new JPanel();
+		chatPanel.add(scrollPane);
 
-        aboutButton.setMnemonic(KeyEvent.VK_A);
-        aboutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent ae) {
-                ImageIcon img = new ImageIcon("resources/bb.jpg");
-                JOptionPane
-                        .showMessageDialog(
-                                null,
-                                "This project is an instant messenger program written in Java by Eric Kong, Parth Mistry, and Robert Kim.\n"
-                                        + "For this project, we have used Java GUI's and Java ServerSockets.\n"
-                                        + "We hope you enjoy our program!",
-                                "About", JOptionPane.INFORMATION_MESSAGE, img);
-            }
-        });
+		final JPanel textPanel = new JPanel();
+		textPanel.add(messageLabel);
+		textPanel.add(MessageBox);
+		textPanel.add(sendButton);
 
-        JRootPane rootPane = getRootPane();
-        rootPane.setDefaultButton(sendButton);
-        final JPanel chatPanel = new JPanel();
-        chatPanel.add(scrollPane);
+		final JPanel aboutPanel = new JPanel();
+		aboutPanel.add(aboutButton);
+		
+		Border lineBorder = BorderFactory.createLineBorder(Color.black);
+		list[0] = "Everyone";
+		JComboBox listOfClients = new JComboBox<String>(list);
+		listOfClients.setBorder(lineBorder);
+		
+		final JPanel clients = new JPanel();
+		clients.setLayout(new BorderLayout());
+		clients.add(new JLabel("Users on this server:"), BorderLayout.CENTER);
+		clients.add(listOfClients, BorderLayout.SOUTH);
 
-        final JPanel textPanel = new JPanel();
-        textPanel.add(messageLabel);
-        textPanel.add(MessageBox);
-        textPanel.add(sendButton);
+		final Container mainPanel = getContentPane();
+		mainPanel.setLayout(new BorderLayout());
+		mainPanel.add(chatPanel, BorderLayout.NORTH);
+		mainPanel.add(textPanel, BorderLayout.CENTER);
+		mainPanel.add(aboutPanel, BorderLayout.SOUTH);
+		mainPanel.add(clients, BorderLayout.EAST);
 
-        final JPanel aboutPanel = new JPanel();
-        aboutPanel.add(aboutButton);
+		chatRoomGUI.setDefaultUI();
+		pack();
+		setIconImage(new ImageIcon("src/resources/bb2.jpg").getImage());
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setVisible(true);
 
-        Border lineBorder = BorderFactory.createLineBorder(Color.black);
-        list[0] = "Everyone";
-        JComboBox listOfClients = new JComboBox<String>(list);
-        listOfClients.setBorder(lineBorder);
+		Thread receiving = new Thread() {
+			public void run() {
+				while (true) {
+					receive();
+				}
+			}
+		};
+		receiving.start();
+	}
+	
+	public void sendMessage() {
+		String message = MessageBox.getText().trim();
+		if (message.trim().equals("")) {
+		} else {
+			MessageBox.setText("");
+			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
+			//chatBox.setForeground(randCol1);
 
-        final JPanel clients = new JPanel();
-        clients.setLayout(new BorderLayout());
-        clients.add(new JLabel("Users on this server:"), BorderLayout.CENTER);
-        clients.add(listOfClients, BorderLayout.SOUTH);
+			if (message.charAt(0) == '!' && message.length() != 1) {
+				if (message.trim().equalsIgnoreCase("!music")) {
+					File file = new File("src/resources/rickroll.wav");
+					try {
+						stream2 = AudioSystem.getAudioInputStream(file);
+						x2 = stream2.getFormat();
+					} catch (UnsupportedAudioFileException | IOException e1) {
+						e1.printStackTrace();
+					}
+					DataLine.Info info = new DataLine.Info(Clip.class, x2);
+					try {
+						clip2 = (Clip) AudioSystem.getLine(info);
+						clip2.open(stream2);
+					} catch (LineUnavailableException e1) {
+						e1.printStackTrace();
+					} catch (IOException e2) {
+						e2.printStackTrace();
+					}
+					clip2.loop(100);
+				}
+				if (message.trim().equalsIgnoreCase("!StopMusic")) {
+					clip2.stop();
+				}
+			} else {
+				send(message);
+				chatBox.append(n + ": " + message);
+				chatBox.append("\n");
+			}
+		}
+	}
 
-        final Container mainPanel = getContentPane();
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(chatPanel, BorderLayout.NORTH);
-        mainPanel.add(textPanel, BorderLayout.CENTER);
-        mainPanel.add(aboutPanel, BorderLayout.SOUTH);
-        mainPanel.add(clients, BorderLayout.EAST);
+	public void recieveMessage(String message) {
+		list = message.split(" ");
+		if (message.equals("")) {
+		} else if (list[1]
+				.equals("82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42")) {
+			names = list[1];
+		} else {
+			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
+			//chatBox.setForeground(randCol2);
+			chatBox.append(message);
+			chatBox.append("\n");
+			File file = new File("src/resources/chatsound.WAV");
+			try {
+				stream = AudioSystem.getAudioInputStream(file);
+				x = stream.getFormat();
+			} catch (UnsupportedAudioFileException | IOException e1) {
+				e1.printStackTrace();
+			}
+			DataLine.Info info = new DataLine.Info(Clip.class, x);
+			try {
+				clip = (Clip) AudioSystem.getLine(info);
+				clip.open(stream);
+			} catch (LineUnavailableException e1) {
+				e1.printStackTrace();
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+			clip.start();
+		}
+	}
 
-        chatRoomGUI.setDefaultUI();
-        pack();
-        setIconImage(new ImageIcon("src/resources/bb2.jpg").getImage());
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setVisible(true);
+	public void send(String message) {
+		try {
+			out.writeUTF(message);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-        Thread receiving = new Thread() {
-            public void run() {
-                while (true) {
-                    receive();
-                }
-            }
-        };
-        receiving.start();
-    }
-
-    public void sendMessage() {
-        String message = MessageBox.getText().trim();
-        if (message.trim().equals("")) {
-        } else {
-            MessageBox.setText("");
-            chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
-            // chatBox.setForeground(randCol1);
-
-            if (message.charAt(0) == '!' && message.length() != 1) {
-                if (message.trim().equalsIgnoreCase("!music")) {
-                    File file = new File("src/resources/rickroll.wav");
-                    try {
-                        stream2 = AudioSystem.getAudioInputStream(file);
-                        x2 = stream2.getFormat();
-                    } catch (UnsupportedAudioFileException | IOException e1) {
-                        e1.printStackTrace();
-                    }
-                    DataLine.Info info = new DataLine.Info(Clip.class, x2);
-                    try {
-                        clip2 = (Clip) AudioSystem.getLine(info);
-                        clip2.open(stream2);
-                    } catch (LineUnavailableException e1) {
-                        e1.printStackTrace();
-                    } catch (IOException e2) {
-                        e2.printStackTrace();
-                    }
-                    clip2.loop(100);
-                }
-                if (message.trim().equalsIgnoreCase("!StopMusic")) {
-                    clip2.stop();
-                }
-            } else {
-                send(message);
-                chatBox.append(n + ": " + message);
-                chatBox.append("\n");
-            }
-        }
-    }
-
-    public void recieveMessage(String message) {
-        list = message.split(" ");
-        if (message.equals("")) {
-        } else if (list[1]
-                .equals("82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42")) {
-            names = list[1];
-        } else {
-            chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
-            // chatBox.setForeground(randCol2);
-            chatBox.append(message);
-            chatBox.append("\n");
-            File file = new File("src/resources/chatsound.WAV");
-            try {
-                stream = AudioSystem.getAudioInputStream(file);
-                x = stream.getFormat();
-            } catch (UnsupportedAudioFileException | IOException e1) {
-                e1.printStackTrace();
-            }
-            DataLine.Info info = new DataLine.Info(Clip.class, x);
-            try {
-                clip = (Clip) AudioSystem.getLine(info);
-                clip.open(stream);
-            } catch (LineUnavailableException e1) {
-                e1.printStackTrace();
-            } catch (IOException e2) {
-                e2.printStackTrace();
-            }
-            clip.start();
-        }
-    }
-
-    public void send(String message) {
-        try {
-            out.writeUTF(message);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void receive() {
-        try {
-            recieveMessage(in.readUTF());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	public void receive() {
+		try {
+			recieveMessage(in.readUTF());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
