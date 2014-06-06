@@ -23,6 +23,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -142,8 +143,8 @@ public class ChatGUI extends JFrame {
 		aboutPanel.add(aboutButton);
 		
 		Border lineBorder = BorderFactory.createLineBorder(Color.black);
-		final JPanel listOfClients = new JPanel();
-		listOfClients.setBorder(lineBorder);
+		final JComboBox listOfClients = new JComboBox<>();
+		//listOfClients.setBorder(lineBorder);
 		listOfClients.add(new JLabel("Connected Users:\n" + listOfNames));
 
 		final Container mainPanel = getContentPane();
