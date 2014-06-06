@@ -1,6 +1,7 @@
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -24,14 +25,23 @@ public class Server {
 
 			while (true) {
 				Socket connection = null;
+				String username = null;
 				try {
 					connection = serverSocket.accept();
+					ObjectInputStream inputName = new ObjectInputStream(
+							connection.getInputStream());
+					username = (String) inputName.readObject();
+					// System.out.println(o.toString());
 					System.out.println("Client #" + clientNum + " connected");
 				} catch (IOException e) {
 					continue;
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+					continue;
 				}
 
-				HandleClient task = new HandleClient(connection, clientNum);
+				HandleClient task = new HandleClient(connection, clientNum,
+						username);
 				clients.add(task);
 				new Thread(task).start();
 				clientNum++;
@@ -71,10 +81,12 @@ class HandleClient implements Runnable {
 	public int clientNum;
 	private DataInputStream in;
 	private DataOutputStream out;
+	private String username;
 
-	public HandleClient(Socket connection, int clientNum) {
+	public HandleClient(Socket connection, int clientNum, String username) {
 		this.connection = connection;
 		this.clientNum = clientNum;
+		this.username = username;
 	}
 
 	@Override
@@ -103,6 +115,6 @@ class HandleClient implements Runnable {
 	}
 
 	public void sendMessage(String message) throws IOException {
-		out.writeUTF(message);
+		out.writeUTF(username + ": " + message);
 	}
 }
