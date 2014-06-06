@@ -135,7 +135,7 @@ public class ChatGUI extends JFrame {
 		aboutPanel.add(aboutButton);
 
 		final JPanel listOfClients = new JPanel();
-		listOfClients.add(new JLabel(listOfNames));
+		listOfClients.add(new JLabel(listOfNames + "hello"));
 
 		final Container mainPanel = getContentPane();
 		mainPanel.setLayout(new BorderLayout());
@@ -149,7 +149,7 @@ public class ChatGUI extends JFrame {
 		setIconImage(new ImageIcon("resources/bb2.jpg").getImage());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setResizable(false);
+		setResizable(true);
 		setVisible(true);
 
 		Thread receiving = new Thread() {
