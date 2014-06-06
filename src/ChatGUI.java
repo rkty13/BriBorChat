@@ -60,6 +60,7 @@ public class ChatGUI extends JFrame {
 		chatBox = new JTextArea(20, 50);
 		DefaultCaret caret = (DefaultCaret) MessageBox.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		chatBox.setWrapStyleWord(true);
 		sendButton = new JButton("Send");
 		aboutButton = new JButton("About");
 		/*
