@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 public class chatRoomGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -69,7 +70,8 @@ public class chatRoomGUI extends JFrame {
 		mainPanel.add(inputPanel, BorderLayout.CENTER);
 		mainPanel.add(chatRoomButtons, BorderLayout.NORTH);
 		mainPanel.add(warningPanel, BorderLayout.SOUTH);
-
+		
+		setDefaultUI();
 		pack();
 		setIconImage(new ImageIcon("resources/bb2.jpg").getImage());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -114,6 +116,14 @@ public class chatRoomGUI extends JFrame {
 			new ChatGUI();
 		}
 
+	}
+	
+	public static void setDefaultUI(){
+		try{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {
