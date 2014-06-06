@@ -71,7 +71,7 @@ public class chatRoomGUI extends JFrame {
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.add(inputPanel, BorderLayout.CENTER);
 		mainPanel.add(chatRoomButtons, BorderLayout.NORTH);
-		mainPanel.add(warningPanel, BorderLayout.SOUTH);
+		//mainPanel.add(warningPanel, BorderLayout.SOUTH);
 		
 		setDefaultUI();
 		pack();

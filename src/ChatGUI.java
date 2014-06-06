@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Random;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -40,9 +41,9 @@ public class ChatGUI extends JFrame {
 	private static JTextArea chatBox;
 	private static JLabel n = chatRoomGUI.name;
 	private static String listOfNames = "";
-	// private static Random rand;
-	// private static Color randCol;
-	// private static float r, g, b;
+	private static Random rand;
+	private static Color randCol1, randCol2;
+	private static float r, g, b;
 	public static String senderName;
 
 	private static AudioInputStream stream, stream2;
@@ -83,10 +84,13 @@ public class ChatGUI extends JFrame {
 		chatBox.setLineWrap(true);
 		sendButton = new JButton("Send");
 		aboutButton = new JButton("About");
-		/*
-		 * rand = new Random(); r = rand.nextFloat(); g = rand.nextFloat(); b =
-		 * rand.nextFloat(); randCol = new Color(r, g, b);
-		 */
+		
+		rand = new Random();
+		r = rand.nextFloat();
+		g = rand.nextFloat();
+		b = rand.nextFloat();
+		randCol1 = new Color(r, g, b);
+		
 
 		JLabel messageLabel = new JLabel("Message:");
 		messageLabel.setDisplayedMnemonic('M');
@@ -169,8 +173,8 @@ public class ChatGUI extends JFrame {
 		if (message.trim().equals("")) {
 		} else {
 			MessageBox.setText("");
-			// chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
-			// chatBox.setForeground(randCol);
+			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
+			chatBox.setForeground(randCol);
 
 			if (message.charAt(0) == '!' && message.length() != 1) {
 				if (message.trim().equalsIgnoreCase("!music")) {
