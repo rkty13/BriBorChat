@@ -204,7 +204,7 @@ public class ChatGUI extends JFrame {
 	public void recieveMessage(String message) {
 		if (message.equals("")) {
 		} else if (message
-		        .substring(0, 64)
+		        .substring(0, 65)
 		        .equals("82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42")) {
 			String[] list = message.split(" ");
 			listOfNames = list[1];
