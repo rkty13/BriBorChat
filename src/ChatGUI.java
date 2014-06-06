@@ -43,7 +43,10 @@ public class ChatGUI extends JFrame {
 
 		Socket socket = null;
 		try {
+			// put attempting connection pane here
+			System.out.println("Attempting connection");
 			socket = new Socket("67.81.222.76", 18304);
+			// close attempting connection pane here
 			in = new DataInputStream(socket.getInputStream());
 			out = new DataOutputStream(socket.getOutputStream());
 
@@ -53,7 +56,9 @@ public class ChatGUI extends JFrame {
 			user.flush();
 
 		} catch (IOException e) {
-			System.err.println("hi");
+			// put could not connect pane here with ok button
+			System.err.println("Could not connect");
+			System.exit(1);
 		}
 
 		MessageBox = new JTextField(20);
@@ -97,8 +102,8 @@ public class ChatGUI extends JFrame {
 								"This project is an instant messenger program written in Java by Eric Kong, Parth Mistry, and Robert Kim.\n"
 										+ "For this project, we have used Java GUI's and Java ServerSockets.\n"
 										+ "We hope you enjoy our program!"
-										+ "\nParth did nothing :P",
-								"About", JOptionPane.INFORMATION_MESSAGE, img);
+										+ "\nParth did nothing :P", "About",
+								JOptionPane.INFORMATION_MESSAGE, img);
 			}
 		});
 
