@@ -26,6 +26,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
@@ -96,7 +99,24 @@ public class ChatGUI extends JFrame {
 		g2 = rand.nextFloat();
 		b2 = rand.nextFloat();
 		randCol2 = new Color(r2, g2, b2);
-
+		
+		JMenuBar menubar = new JMenuBar();
+		setJMenuBar(menubar);
+		
+		JMenu optionsMenu = new JMenu("Options");
+		optionsMenu.setMnemonic(KeyEvent.VK_O);
+		menubar.add(optionsMenu);
+		
+		JMenuItem fontAction = new JMenuItem("Font Size");
+		optionsMenu.add(fontAction);
+		
+		fontAction.addActionListener(new ActionListener(){
+		    @Override
+		    public void actionPerformed(ActionEvent ae){
+		        //Code to select a font size
+		    }
+		});
+		
 		JLabel messageLabel = new JLabel("Message:");
 		messageLabel.setDisplayedMnemonic('M');
 		messageLabel.setLabelFor(MessageBox);
@@ -159,7 +179,7 @@ public class ChatGUI extends JFrame {
 		mainPanel.add(textPanel, BorderLayout.CENTER);
 		mainPanel.add(aboutPanel, BorderLayout.SOUTH);
 		mainPanel.add(clients, BorderLayout.EAST);
-
+		
 		chatRoomGUI.setDefaultUI();
 		pack();
 		setIconImage(new ImageIcon("src/resources/bb2.jpg").getImage());
