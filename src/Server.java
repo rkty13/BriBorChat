@@ -81,10 +81,10 @@ public class Server {
 
 	public static void updateUserList() {
 		StringBuilder sb = new StringBuilder();
+		for (HandleClient name : clients) {
+			sb.append(name.username + "\n");
+		}
 		for (HandleClient client : clients) {
-			for (HandleClient name : clients) {
-				sb.append(name.username + "\n");
-			}
 			try {
 				client.sendMessage(sb.toString(),
 						"82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42");
