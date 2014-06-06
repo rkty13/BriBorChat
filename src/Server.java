@@ -26,13 +26,13 @@ public class Server {
 			while (true) {
 				Socket connection = null;
 				String username = null;
+				ObjectInputStream inputName = null;
 				try {
 					connection = serverSocket.accept();
-					ObjectInputStream inputName = new ObjectInputStream(
+					inputName = new ObjectInputStream(
 							connection.getInputStream());
 					username = (String) inputName.readObject();
 					System.out.println(username);
-					inputName.close();
 					// System.out.println(o.toString());
 					System.out.println("Client #" + clientNum + " connected");
 				} catch (IOException e) {
