@@ -44,6 +44,7 @@ public class Server {
 				HandleClient task = new HandleClient(connection, clientNum,
 						username);
 				clients.add(task);
+				updateUserList();
 				new Thread(task).start();
 				clientNum++;
 
@@ -59,6 +60,7 @@ public class Server {
 				clients.remove(i);
 			}
 		}
+		updateUserList();
 	}
 
 	public static void writeToAll(String message, int clientNum,
