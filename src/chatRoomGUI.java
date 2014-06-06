@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -56,8 +57,11 @@ public class chatRoomGUI extends JFrame {
 		rootPane.setDefaultButton(selectNameButton);
 		
 		final JPanel inputPanel = new JPanel();
+		inputPanel.add(new JLabel("Please enter your name:"));
 		inputPanel.add(nameField);
-		inputPanel.add(selectNameButton);
+		
+		final JPanel selectNamePanel = new JPanel();
+		selectNamePanel.add(selectNameButton);
 
 		final JPanel chatRoomButtons = new JPanel();
 		chatRoomButtons.add(chatRoom1);
@@ -70,6 +74,7 @@ public class chatRoomGUI extends JFrame {
 		final Container mainPanel = getContentPane();
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.add(inputPanel, BorderLayout.CENTER);
+		mainPanel.add(selectNamePanel, BorderLayout.SOUTH);
 		mainPanel.add(chatRoomButtons, BorderLayout.NORTH);
 		//mainPanel.add(warningPanel, BorderLayout.SOUTH);
 		
@@ -94,7 +99,6 @@ public class chatRoomGUI extends JFrame {
 			// JOptionPane.showMessageDialog(null, name);
 		}
 		nameField.setText("");
-
 	}
 
 	private void enterChat1() {
