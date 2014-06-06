@@ -5,10 +5,10 @@ import java.net.Socket;
 
 public class Client {
 
-	private static DataInputStream in;
-	private static DataOutputStream out;
+	private DataInputStream in;
+	private DataOutputStream out;
 
-	public static String username;
+	public String username;
 
 	public Client(String username1) {
 		username = username1;
