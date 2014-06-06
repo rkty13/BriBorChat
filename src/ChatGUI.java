@@ -35,6 +35,7 @@ public class ChatGUI extends JFrame {
 	private static JButton sendButton, aboutButton;
 	private static JTextArea chatBox;
 	private static JLabel n = chatRoomGUI.name;
+	private static String listOfNames = "";
 	// private static Random rand;
 	// private static Color randCol;
 	// private static float r, g, b;
@@ -63,14 +64,14 @@ public class ChatGUI extends JFrame {
 			out = new DataOutputStream(socket.getOutputStream());
 
 			ObjectOutputStream user = new ObjectOutputStream(
-					socket.getOutputStream());
+			        socket.getOutputStream());
 			user.writeObject(userClass.username);
 			user.flush();
 
 		} catch (IOException e) {
 			JOptionPane
-					.showMessageDialog(null,
-							"Error: Could not connect to server. Please try again later.");
+			        .showMessageDialog(null,
+			                "Error: Could not connect to server. Please try again later.");
 			System.exit(1);
 		}
 
@@ -110,13 +111,12 @@ public class ChatGUI extends JFrame {
 			public void actionPerformed(final ActionEvent ae) {
 				ImageIcon img = new ImageIcon("resources/bb.jpg");
 				JOptionPane
-						.showMessageDialog(
-								null,
-								"This project is an instant messenger program written in Java by Eric Kong, Parth Mistry, and Robert Kim.\n"
-										+ "For this project, we have used Java GUI's and Java ServerSockets.\n"
-										+ "We hope you enjoy our program!"
-										+ "\nParth did nothing :P", "About",
-								JOptionPane.INFORMATION_MESSAGE, img);
+				        .showMessageDialog(
+				                null,
+				                "This project is an instant messenger program written in Java by Eric Kong, Parth Mistry, and Robert Kim.\n"
+				                        + "For this project, we have used Java GUI's and Java ServerSockets.\n"
+				                        + "We hope you enjoy our program!",
+				                "About", JOptionPane.INFORMATION_MESSAGE, img);
 			}
 		});
 
@@ -134,11 +134,15 @@ public class ChatGUI extends JFrame {
 		final JPanel aboutPanel = new JPanel();
 		aboutPanel.add(aboutButton);
 
+		final JPanel listOfClients = new JPanel();
+		listOfClients.add(new JLabel(listOfNames));
+
 		final Container mainPanel = getContentPane();
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.add(chatPanel, BorderLayout.NORTH);
 		mainPanel.add(textPanel, BorderLayout.CENTER);
 		mainPanel.add(aboutPanel, BorderLayout.SOUTH);
+		mainPanel.add(listOfClients, BorderLayout.EAST);
 
 		chatRoomGUI.setDefaultUI();
 		pack();
@@ -200,9 +204,10 @@ public class ChatGUI extends JFrame {
 	public void recieveMessage(String message) {
 		if (message.equals("")) {
 		} else if (message
-				.substring(0, 65)
-				.equals("82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42")) {
+		        .substring(0, 64)
+		        .equals("82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42")) {
 			String[] list = message.split(" ");
+			listOfNames = list[1];
 		} else {
 			// chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
 			// chatBox.setForeground(randCol);
