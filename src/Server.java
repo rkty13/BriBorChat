@@ -62,11 +62,12 @@ public class Server {
 		}
 	}
 
-	public static void writeToAll(String message, int clientNum) {
+	public static void writeToAll(String message, int clientNum,
+			String fromUsername) {
 		for (HandleClient client : clients) {
 			try {
 				if (!(client.clientNum == clientNum)) {
-					client.sendMessage(message);
+					client.sendMessage(message, fromUsername);
 				}
 
 			} catch (IOException e) {
@@ -89,6 +90,7 @@ class HandleClient implements Runnable {
 		this.connection = connection;
 		this.clientNum = clientNum;
 		this.username = username;
+		System.out.println(username + 1);
 	}
 
 	@Override
@@ -102,7 +104,7 @@ class HandleClient implements Runnable {
 				try {
 					String message = in.readUTF();
 					System.out.println("Message: '" + message + "' received.");
-					Server.writeToAll(message, clientNum);
+					Server.writeToAll(message, clientNum, username);
 				} catch (Exception e) {
 					System.err.println("Client #" + clientNum
 							+ " disconnected.");
@@ -116,7 +118,8 @@ class HandleClient implements Runnable {
 		}
 	}
 
-	public void sendMessage(String message) throws IOException {
-		out.writeUTF(username + ": " + message);
+	public void sendMessage(String message, String fromUsername)
+			throws IOException {
+		out.writeUTF(fromUsername + ": " + message);
 	}
 }
