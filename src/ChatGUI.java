@@ -123,6 +123,7 @@ public class ChatGUI extends JFrame {
 		mainPanel.add(aboutPanel, BorderLayout.SOUTH);
 
 		pack();
+		setIconImage(new ImageIcon("resources/bb2.jpg").getImage());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
