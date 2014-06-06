@@ -41,7 +41,8 @@ public class ChatGUI extends JFrame {
 	private static JButton sendButton, aboutButton;
 	private static JTextArea chatBox;
 	private static String n = chatRoomGUI.name.getText();
-	private static String listOfNames = "";
+	private static String[] list = new String [2];
+	private static String names;
 	private static Random rand;
 	private static Color randCol1, randCol2;
 	private static float r, g, b, r2, g2, b2;
@@ -143,16 +144,21 @@ public class ChatGUI extends JFrame {
 		aboutPanel.add(aboutButton);
 		
 		Border lineBorder = BorderFactory.createLineBorder(Color.black);
-		final JPanel listOfClients = new JPanel();
+		list[0] = "Everyone";
+		JComboBox listOfClients = new JComboBox<String>(list);
 		listOfClients.setBorder(lineBorder);
-		listOfClients.add(new JLabel("Connected Users:\n" + listOfNames));
+		
+		final JPanel clients = new JPanel();
+		clients.setLayout(new BorderLayout());
+		clients.add(new JLabel("Users on this server:"), BorderLayout.CENTER);
+		clients.add(listOfClients, BorderLayout.SOUTH);
 
 		final Container mainPanel = getContentPane();
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.add(chatPanel, BorderLayout.NORTH);
 		mainPanel.add(textPanel, BorderLayout.CENTER);
 		mainPanel.add(aboutPanel, BorderLayout.SOUTH);
-		mainPanel.add(listOfClients, BorderLayout.EAST);
+		mainPanel.add(clients, BorderLayout.EAST);
 
 		chatRoomGUI.setDefaultUI();
 		pack();
@@ -177,7 +183,7 @@ public class ChatGUI extends JFrame {
 		if (message.trim().equals("")) {
 		} else {
 			MessageBox.setText("");
-			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 16));
+			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
 			//chatBox.setForeground(randCol1);
 
 			if (message.charAt(0) == '!' && message.length() != 1) {
@@ -212,13 +218,13 @@ public class ChatGUI extends JFrame {
 	}
 
 	public void recieveMessage(String message) {
-		String[] list = message.split(" ");
+		list = message.split(" ");
 		if (message.equals("")) {
 		} else if (list[1]
 				.equals("82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42")) {
-			listOfNames = list[1];
+			names = list[1];
 		} else {
-			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 16));
+			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
 			//chatBox.setForeground(randCol2);
 			chatBox.append(message);
 			chatBox.append("\n");
