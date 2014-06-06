@@ -46,7 +46,7 @@ public class Server {
 				clients.add(task);
 				
 				new Thread(task).start();
-				updateUserList();
+				//updateUserList();
 				clientNum++;
 
 			}
@@ -61,7 +61,7 @@ public class Server {
 				clients.remove(i);
 			}
 		}
-		updateUserList();
+		//updateUserList();
 	}
 
 	public static void writeToAll(String message, int clientNum,
