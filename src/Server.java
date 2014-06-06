@@ -100,6 +100,15 @@ public class Server {
             }
         }
     }
+    
+    public boolean checkUserTaken(String username) {
+        for (HandleClient client : clients) {
+            if (client.username.equalsIgnoreCase(username)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 class HandleClient implements Runnable {
