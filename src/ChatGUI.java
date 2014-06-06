@@ -43,10 +43,8 @@ public class ChatGUI extends JFrame {
 
 		Socket socket = null;
 		try {
-			// put attempting connection pane here
 			System.out.println("Attempting connection");
 			socket = new Socket("67.81.222.76", 18304);
-			// close attempting connection pane here
 			in = new DataInputStream(socket.getInputStream());
 			out = new DataOutputStream(socket.getOutputStream());
 
