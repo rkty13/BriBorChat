@@ -52,7 +52,6 @@ public class chatRoomGUI extends JFrame {
 		});
 		*/
 		
-		
 		JRootPane rootPane =  getRootPane();
 		rootPane.setDefaultButton(selectNameButton);
 		
