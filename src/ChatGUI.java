@@ -131,12 +131,16 @@ public class ChatGUI extends JFrame {
 
 		final JPanel aboutPanel = new JPanel();
 		aboutPanel.add(aboutButton);
+		
+		final JPanel listOfClients = new JPanel();
+		
 
 		final Container mainPanel = getContentPane();
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.add(chatPanel, BorderLayout.NORTH);
 		mainPanel.add(textPanel, BorderLayout.CENTER);
 		mainPanel.add(aboutPanel, BorderLayout.SOUTH);
+		mainPanel.add(listOfClients, BorderLayout.EAST);
 		
 		chatRoomGUI.setDefaultUI();
 		pack();
