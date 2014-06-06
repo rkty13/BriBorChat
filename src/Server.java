@@ -32,9 +32,8 @@ public class Server {
 					inputName = new ObjectInputStream(
 							connection.getInputStream());
 					username = (String) inputName.readObject();
-					System.out.println(username);
-					// System.out.println(o.toString());
-					System.out.println("Client #" + clientNum + " connected");
+					System.out.println("Client #" + clientNum
+							+ " connected as '" + username + "'.");
 				} catch (IOException e) {
 					continue;
 				} catch (ClassNotFoundException e) {
@@ -90,7 +89,6 @@ class HandleClient implements Runnable {
 		this.connection = connection;
 		this.clientNum = clientNum;
 		this.username = username;
-		System.out.println(username + 1);
 	}
 
 	@Override
@@ -103,7 +101,8 @@ class HandleClient implements Runnable {
 			while (true) {
 				try {
 					String message = in.readUTF();
-					System.out.println("Message: '" + message + "' received.");
+					System.out.println("Message: '" + message
+							+ "' received from " + username + ".");
 					Server.writeToAll(message, clientNum, username);
 				} catch (Exception e) {
 					System.err.println("Client #" + clientNum
