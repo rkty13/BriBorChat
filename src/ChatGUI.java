@@ -135,7 +135,7 @@ public class ChatGUI extends JFrame {
 		aboutPanel.add(aboutButton);
 
 		final JPanel listOfClients = new JPanel();
-		listOfClients.add(new JLabel(listOfNames));
+		listOfClients.add(new JLabel("Connected Users:\n" + listOfNames));
 
 		final Container mainPanel = getContentPane();
 		mainPanel.setLayout(new BorderLayout());
