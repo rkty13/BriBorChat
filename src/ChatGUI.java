@@ -96,7 +96,7 @@ public class ChatGUI extends JFrame {
 								"This project is an instant messenger program written in Java by Eric Kong, Parth Mistry, and Robert Kim.\n"
 										+ "For this project, we have used Java GUI's and Java ServerSockets.\n"
 										+ "We hope you enjoy our program!"
-										+ "Parth did nothing :P",
+										+ "\nParth did nothing :P",
 								"About", JOptionPane.INFORMATION_MESSAGE, img);
 			}
 		});
