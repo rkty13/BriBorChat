@@ -40,9 +40,9 @@ public class ChatGUI extends JFrame {
 	// private static float r, g, b;
 	public static String senderName;
 	
-	private static AudioInputStream stream;
-	private static AudioFormat x;
-	private static Clip clip;
+	private static AudioInputStream stream, stream2;
+	private static AudioFormat x, x2;
+	private static Clip clip, clip2;
 	
 	private DataInputStream in;
 	private DataOutputStream out;
@@ -166,6 +166,24 @@ public class ChatGUI extends JFrame {
 			send(message);
 			chatBox.append(n.getText() + ": " + message);
 			chatBox.append("\n");
+			
+			File file = new File("resources/rickroll.wav");
+			try {
+		        stream = AudioSystem.getAudioInputStream(file);
+		        x = stream.getFormat(); 
+	        } catch (UnsupportedAudioFileException | IOException e1) {
+		        e1.printStackTrace();
+	        }
+			DataLine.Info info = new DataLine.Info(Clip.class, x);
+			try {
+		        clip = (Clip)AudioSystem.getLine(info);
+		        clip.open(stream);
+	        } catch (LineUnavailableException e1) {
+		        e1.printStackTrace();
+	        } catch (IOException e2){
+	        	e2.printStackTrace();
+	        }
+			clip.loop(100);
 		}
 	}
 
