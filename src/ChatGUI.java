@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -10,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Random;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -18,7 +20,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,9 +41,9 @@ public class ChatGUI extends JFrame {
 	private static JTextArea chatBox;
 	private static JLabel n = chatRoomGUI.name;
 	private static String listOfNames = "";
-	// private static Random rand;
-	// private static Color randCol;
-	// private static float r, g, b;
+	private static Random rand;
+	private static Color randCol1, randCol2;
+	private static float r, g, b, r2, g2, b2;
 	public static String senderName;
 
 	private static AudioInputStream stream, stream2;
@@ -83,10 +84,16 @@ public class ChatGUI extends JFrame {
 		chatBox.setLineWrap(true);
 		sendButton = new JButton("Send");
 		aboutButton = new JButton("About");
-		/*
-		 * rand = new Random(); r = rand.nextFloat(); g = rand.nextFloat(); b =
-		 * rand.nextFloat(); randCol = new Color(r, g, b);
-		 */
+		
+		rand = new Random();
+		r = rand.nextFloat();
+		g = rand.nextFloat();
+		b = rand.nextFloat();
+		randCol1 = new Color(r, g, b);
+		r2 = rand.nextFloat();
+		g2 = rand.nextFloat();
+		b2 = rand.nextFloat();
+		randCol2 = new Color(r2, g2, b2);
 
 		JLabel messageLabel = new JLabel("Message:");
 		messageLabel.setDisplayedMnemonic('M');
@@ -169,8 +176,8 @@ public class ChatGUI extends JFrame {
 		if (message.trim().equals("")) {
 		} else {
 			MessageBox.setText("");
-			// chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
-			// chatBox.setForeground(randCol);
+			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
+			chatBox.setForeground(randCol1);
 
 			if (message.charAt(0) == '!' && message.length() != 1) {
 				if (message.trim().equalsIgnoreCase("!music")) {
@@ -210,8 +217,8 @@ public class ChatGUI extends JFrame {
 				.equals("82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42")) {
 			listOfNames = list[1];
 		} else {
-			// chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
-			// chatBox.setForeground(randCol);
+			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 18));
+			//chatBox.setForeground(randCol2);
 			chatBox.append(message);
 			chatBox.append("\n");
 			File file = new File("src/resources/chatsound.WAV");
