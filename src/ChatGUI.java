@@ -126,7 +126,8 @@ public class ChatGUI extends JFrame {
 		mainPanel.add(chatPanel, BorderLayout.NORTH);
 		mainPanel.add(textPanel, BorderLayout.CENTER);
 		mainPanel.add(aboutPanel, BorderLayout.SOUTH);
-
+		
+		chatRoomGUI.setDefaultUI();
 		pack();
 		setIconImage(new ImageIcon("resources/bb2.jpg").getImage());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
