@@ -143,8 +143,8 @@ public class ChatGUI extends JFrame {
 		aboutPanel.add(aboutButton);
 		
 		Border lineBorder = BorderFactory.createLineBorder(Color.black);
-		final JComboBox listOfClients = new JComboBox<>();
-		//listOfClients.setBorder(lineBorder);
+		final JPanel listOfClients = new JPanel();
+		listOfClients.setBorder(lineBorder);
 		listOfClients.add(new JLabel("Connected Users:\n" + listOfNames));
 
 		final Container mainPanel = getContentPane();
