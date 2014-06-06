@@ -56,8 +56,7 @@ public class ChatGUI extends JFrame {
 			user.flush();
 
 		} catch (IOException e) {
-			// put could not connect pane here with ok button
-			System.err.println("Could not connect");
+			JOptionPane.showMessageDialog(null, "Error: Could not connect to server. Please try again later.");
 			System.exit(1);
 		}
 
