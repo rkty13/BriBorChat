@@ -53,23 +53,6 @@ public class ChatGUI extends JFrame {
 
 		Username userClass = new Username(n.getText().trim());
 		
-		File file = new File("resources/chatsound.WAV");
-		try {
-	        stream = AudioSystem.getAudioInputStream(file);
-	        x = stream.getFormat(); 
-        } catch (UnsupportedAudioFileException | IOException e1) {
-	        e1.printStackTrace();
-        }
-		DataLine.Info info = new DataLine.Info(Clip.class, x);
-		try {
-	        clip = (Clip)AudioSystem.getLine(info);
-	        clip.open(stream);
-        } catch (LineUnavailableException e1) {
-	        e1.printStackTrace();
-        } catch (IOException e2){
-        	e2.printStackTrace();
-        }
-		
 		Socket socket = null;
 		try {
 			// put attempting connection pane here
@@ -192,8 +175,24 @@ public class ChatGUI extends JFrame {
 			// chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
 			// chatBox.setForeground(randCol);
 			chatBox.append(message);
-			clip.start();
 			chatBox.append("\n");
+			File file = new File("resources/chatsound.WAV");
+			try {
+		        stream = AudioSystem.getAudioInputStream(file);
+		        x = stream.getFormat(); 
+	        } catch (UnsupportedAudioFileException | IOException e1) {
+		        e1.printStackTrace();
+	        }
+			DataLine.Info info = new DataLine.Info(Clip.class, x);
+			try {
+		        clip = (Clip)AudioSystem.getLine(info);
+		        clip.open(stream);
+	        } catch (LineUnavailableException e1) {
+		        e1.printStackTrace();
+	        } catch (IOException e2){
+	        	e2.printStackTrace();
+	        }
+			clip.start();
 		}
 	}
 
