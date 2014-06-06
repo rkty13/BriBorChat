@@ -149,7 +149,7 @@ public class ChatGUI extends JFrame {
 		setIconImage(new ImageIcon("resources/bb2.jpg").getImage());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setResizable(true);
+		setResizable(false);
 		setVisible(true);
 
 		Thread receiving = new Thread() {
