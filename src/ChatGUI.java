@@ -73,7 +73,7 @@ public class ChatGUI extends JFrame {
 		Socket socket = null;
 		try {
 			// put attempting connection pane here
-			System.out.println("Attempting connection");
+			//System.out.println("Attempting connection");
 			socket = new Socket("67.81.222.76", 18304);
 			// close attempting connection pane here
 			in = new DataInputStream(socket.getInputStream());
@@ -175,7 +175,7 @@ public class ChatGUI extends JFrame {
 
 	public void sendMessage() {
 		String message = MessageBox.getText();
-		if (message.equals("")) {
+		if (message.trim().equals("")) {
 		} else {
 			MessageBox.setText("");
 			// chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
@@ -192,6 +192,7 @@ public class ChatGUI extends JFrame {
 			// chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
 			// chatBox.setForeground(randCol);
 			chatBox.append(message);
+			clip.start();
 			chatBox.append("\n");
 		}
 	}

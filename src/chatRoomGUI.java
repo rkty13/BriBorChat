@@ -82,7 +82,7 @@ public class chatRoomGUI extends JFrame {
 
 	private void selectName() {
 		String temp = nameField.getText().trim();
-		if (temp.equals("")) {
+		if (temp.equals("") && nameField.isEditable() == true) {
 			JOptionPane.showMessageDialog(null, "Your name cannot be blank!",
 			        "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
