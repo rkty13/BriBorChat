@@ -5,10 +5,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -31,7 +39,11 @@ public class ChatGUI extends JFrame {
 	// private static Color randCol;
 	// private static float r, g, b;
 	public static String senderName;
-
+	
+	private static AudioInputStream stream;
+	private static AudioFormat x;
+	private static Clip clip;
+	
 	private DataInputStream in;
 	private DataOutputStream out;
 
@@ -40,11 +52,30 @@ public class ChatGUI extends JFrame {
 		super(chatRoomGUI.chatRoomName);
 
 		Username userClass = new Username(n.getText().trim());
-
+		
+		File file = new File("resources/chatsound.WAV");
+		try {
+	        stream = AudioSystem.getAudioInputStream(file);
+	        x = stream.getFormat(); 
+        } catch (UnsupportedAudioFileException | IOException e1) {
+	        e1.printStackTrace();
+        }
+		DataLine.Info info = new DataLine.Info(Clip.class, x);
+		try {
+	        clip = (Clip)AudioSystem.getLine(info);
+	        clip.open(stream);
+        } catch (LineUnavailableException e1) {
+	        e1.printStackTrace();
+        } catch (IOException e2){
+        	e2.printStackTrace();
+        }
+		
 		Socket socket = null;
 		try {
+			// put attempting connection pane here
 			System.out.println("Attempting connection");
 			socket = new Socket("67.81.222.76", 18304);
+			// close attempting connection pane here
 			in = new DataInputStream(socket.getInputStream());
 			out = new DataOutputStream(socket.getOutputStream());
 
@@ -54,9 +85,7 @@ public class ChatGUI extends JFrame {
 			user.flush();
 
 		} catch (IOException e) {
-			JOptionPane
-					.showMessageDialog(null,
-							"Error: Could not connect to server. Please try again later.");
+			JOptionPane.showMessageDialog(null, "Error: Could not connect to server. Please try again later.");
 			System.exit(1);
 		}
 
@@ -100,8 +129,9 @@ public class ChatGUI extends JFrame {
 								null,
 								"This project is an instant messenger program written in Java by Eric Kong, Parth Mistry, and Robert Kim.\n"
 										+ "For this project, we have used Java GUI's and Java ServerSockets.\n"
-										+ "We hope you enjoy our program!",
-								"About", JOptionPane.INFORMATION_MESSAGE, img);
+										+ "We hope you enjoy our program!"
+										+ "\nParth did nothing :P", "About",
+								JOptionPane.INFORMATION_MESSAGE, img);
 			}
 		});
 
@@ -124,7 +154,7 @@ public class ChatGUI extends JFrame {
 		mainPanel.add(chatPanel, BorderLayout.NORTH);
 		mainPanel.add(textPanel, BorderLayout.CENTER);
 		mainPanel.add(aboutPanel, BorderLayout.SOUTH);
-
+		
 		chatRoomGUI.setDefaultUI();
 		pack();
 		setIconImage(new ImageIcon("resources/bb2.jpg").getImage());
