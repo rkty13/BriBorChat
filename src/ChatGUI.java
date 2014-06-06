@@ -157,33 +157,40 @@ public class ChatGUI extends JFrame {
 	}
 
 	public void sendMessage() {
-		String message = MessageBox.getText();
+		String message = MessageBox.getText().trim();
 		if (message.trim().equals("")) {
 		} else {
 			MessageBox.setText("");
 			// chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
 			// chatBox.setForeground(randCol);
-			send(message);
-			chatBox.append(n.getText() + ": " + message);
-			chatBox.append("\n");
-			if(message.trim().equalsIgnoreCase("!music")){
-    			File file = new File("resources/rickroll.wav");
-    			try {
-    		        stream2 = AudioSystem.getAudioInputStream(file);
-    		        x2 = stream2.getFormat(); 
-    	        } catch (UnsupportedAudioFileException | IOException e1) {
-    		        e1.printStackTrace();
-    	        }
-    			DataLine.Info info = new DataLine.Info(Clip.class, x2);
-    			try {
-    		        clip2 = (Clip)AudioSystem.getLine(info);
-    		        clip2.open(stream);
-    	        } catch (LineUnavailableException e1) {
-    		        e1.printStackTrace();
-    	        } catch (IOException e2){
-    	        	e2.printStackTrace();
-    	        }
-    			clip2.loop(100);
+			
+			if(message.charAt(0) == '!' && message.length() != 1){
+    			if(message.trim().equalsIgnoreCase("!music")){
+        			File file = new File("resources/rickroll.wav");
+        			try {
+        		        stream2 = AudioSystem.getAudioInputStream(file);
+        		        x2 = stream2.getFormat(); 
+        	        } catch (UnsupportedAudioFileException | IOException e1) {
+        		        e1.printStackTrace();
+        	        }
+        			DataLine.Info info = new DataLine.Info(Clip.class, x2);
+        			try {
+        		        clip2 = (Clip)AudioSystem.getLine(info);
+        		        clip2.open(stream2);
+        	        } catch (LineUnavailableException e1) {
+        		        e1.printStackTrace();
+        	        } catch (IOException e2){
+        	        	e2.printStackTrace();
+        	        }
+        			clip2.loop(100);
+    			}
+    			if(message.trim().equalsIgnoreCase("!StopMusic")){
+    				clip2.stop();
+    			}
+			} else {
+				send(message);
+				chatBox.append(n.getText() + ": " + message);
+				chatBox.append("\n");
 			}
 		}
 	}
