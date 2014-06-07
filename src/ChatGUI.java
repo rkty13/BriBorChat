@@ -21,6 +21,7 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -31,6 +32,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -107,10 +110,58 @@ public class ChatGUI extends JFrame {
         optionsMenu.setMnemonic(KeyEvent.VK_O);
         menubar.add(optionsMenu);
         
-        JMenuItem fontAction = new JMenuItem("Font Size");
+        JMenu fontAction = new JMenu("Font");
+        JMenu fontSizeAction = new JMenu("Size");
+        ButtonGroup bg = new ButtonGroup();
+        JRadioButtonMenuItem size12 = new JRadioButtonMenuItem("12");
+        JRadioButtonMenuItem size13 = new JRadioButtonMenuItem("13");
+        JRadioButtonMenuItem size14 = new JRadioButtonMenuItem("14");
+        JRadioButtonMenuItem size15 = new JRadioButtonMenuItem("15");
+        JRadioButtonMenuItem size16 = new JRadioButtonMenuItem("16");
+        bg.add(size12);
+        bg.add(size13);
+        bg.add(size14); 
+        bg.add(size15);
+        bg.add(size16);
+        fontSizeAction.add(size12);
+        fontSizeAction.add(size13);
+        fontSizeAction.add(size14); 
+        fontSizeAction.add(size15);
+        fontSizeAction.add(size16);
+        
+        fontAction.add(fontSizeAction);
+        
         optionsMenu.add(fontAction);
         
-        fontAction.addActionListener(new ActionListener(){
+        size12.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae){
+                //Code to select a font size
+            }
+        });
+        
+        size13.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae){
+                //Code to select a font size
+            }
+        });
+        
+        size14.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae){
+                //Code to select a font size
+            }
+        });
+        
+        size15.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae){
+                //Code to select a font size
+            }
+        });
+        
+        size16.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae){
                 //Code to select a font size
