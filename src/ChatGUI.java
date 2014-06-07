@@ -26,6 +26,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
@@ -41,8 +44,8 @@ public class ChatGUI extends JFrame {
     private static JButton sendButton, aboutButton;
     private static JTextArea chatBox;
     private static String n = chatRoomGUI.name.getText();
-    private static String[] list = new String[2];
-    //private static String names;
+    private static String[] list = new String [2];
+    private static String names;
     private static Random rand;
     private static Color randCol1, randCol2;
     private static float r, g, b, r2, g2, b2;
@@ -72,13 +75,6 @@ public class ChatGUI extends JFrame {
             user.writeObject(userClass.username);
             user.flush();
 
-            if (!in.readBoolean()) {
-                JOptionPane
-                        .showMessageDialog(null,
-                                "Error: Username already taken. Please choose another one.");
-                System.exit(1);
-            }
-
         } catch (IOException e) {
             JOptionPane
                     .showMessageDialog(null,
@@ -93,7 +89,7 @@ public class ChatGUI extends JFrame {
         chatBox.setLineWrap(true);
         sendButton = new JButton();
         aboutButton = new JButton("About");
-
+        
         rand = new Random();
         r = rand.nextFloat();
         g = rand.nextFloat();
@@ -103,7 +99,24 @@ public class ChatGUI extends JFrame {
         g2 = rand.nextFloat();
         b2 = rand.nextFloat();
         randCol2 = new Color(r2, g2, b2);
-
+        
+        JMenuBar menubar = new JMenuBar();
+        setJMenuBar(menubar);
+        
+        JMenu optionsMenu = new JMenu("Options");
+        optionsMenu.setMnemonic(KeyEvent.VK_O);
+        menubar.add(optionsMenu);
+        
+        JMenuItem fontAction = new JMenuItem("Font Size");
+        optionsMenu.add(fontAction);
+        
+        fontAction.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae){
+                //Code to select a font size
+            }
+        });
+        
         JLabel messageLabel = new JLabel("Message:");
         messageLabel.setDisplayedMnemonic('M');
         messageLabel.setLabelFor(MessageBox);
@@ -130,7 +143,7 @@ public class ChatGUI extends JFrame {
                 JOptionPane
                         .showMessageDialog(
                                 null,
-                                "This project is an instant messenger program written in Java by Eric Kong, Robert Kim, and Parth Mistry.\n"
+                                "This project is an instant messenger program written in Java by Eric Kong, Parth Mistry, and Robert Kim.\n"
                                         + "For this project, we have used Java GUI's and Java ServerSockets.\n"
                                         + "We hope you enjoy our program!",
                                 "About", JOptionPane.INFORMATION_MESSAGE, img);
@@ -149,13 +162,12 @@ public class ChatGUI extends JFrame {
 
         final JPanel aboutPanel = new JPanel();
         aboutPanel.add(aboutButton);
-
+        
         Border lineBorder = BorderFactory.createLineBorder(Color.black);
         list[0] = "Everyone";
-        @SuppressWarnings("rawtypes")
         JComboBox listOfClients = new JComboBox<String>(list);
         listOfClients.setBorder(lineBorder);
-
+        
         final JPanel clients = new JPanel();
         clients.setLayout(new BorderLayout());
         clients.add(new JLabel("Users on this server:"), BorderLayout.CENTER);
@@ -167,7 +179,7 @@ public class ChatGUI extends JFrame {
         mainPanel.add(textPanel, BorderLayout.CENTER);
         mainPanel.add(aboutPanel, BorderLayout.SOUTH);
         mainPanel.add(clients, BorderLayout.EAST);
-
+        
         chatRoomGUI.setDefaultUI();
         pack();
         setIconImage(new ImageIcon("src/resources/bb2.jpg").getImage());
@@ -185,14 +197,14 @@ public class ChatGUI extends JFrame {
         };
         receiving.start();
     }
-
+    
     public void sendMessage() {
         String message = MessageBox.getText().trim();
         if (message.trim().equals("")) {
         } else {
             MessageBox.setText("");
             chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
-            // chatBox.setForeground(randCol1);
+            //chatBox.setForeground(randCol1);
 
             if (message.charAt(0) == '!' && message.length() != 1) {
                 if (message.trim().equalsIgnoreCase("!music")) {
@@ -230,11 +242,10 @@ public class ChatGUI extends JFrame {
         if (message.equals("")) {
         } else if (list[1]
                 .equals("82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42")) {
-        	
-        	//names = list[1];
+            names = list[1];
         } else {
             chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
-            // chatBox.setForeground(randCol2);
+            //chatBox.setForeground(randCol2);
             chatBox.append(message);
             chatBox.append("\n");
             File file = new File("src/resources/chatsound.WAV");
