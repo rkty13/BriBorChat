@@ -42,7 +42,7 @@ public class ChatGUI extends JFrame {
     private static JTextArea chatBox;
     private static String n = chatRoomGUI.name.getText();
     private static String[] list = new String[2];
-    private static String names;
+    //private static String names;
     private static Random rand;
     private static Color randCol1, randCol2;
     private static float r, g, b, r2, g2, b2;
@@ -152,6 +152,7 @@ public class ChatGUI extends JFrame {
 
         Border lineBorder = BorderFactory.createLineBorder(Color.black);
         list[0] = "Everyone";
+        @SuppressWarnings("rawtypes")
         JComboBox listOfClients = new JComboBox<String>(list);
         listOfClients.setBorder(lineBorder);
 
@@ -229,7 +230,8 @@ public class ChatGUI extends JFrame {
         if (message.equals("")) {
         } else if (list[1]
                 .equals("82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42")) {
-            names = list[1];
+        	
+        	//names = list[1];
         } else {
             chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
             // chatBox.setForeground(randCol2);
