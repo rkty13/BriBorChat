@@ -165,6 +165,7 @@ public class ChatGUI extends JFrame {
         
         Border lineBorder = BorderFactory.createLineBorder(Color.black);
         list[0] = "Everyone";
+        @SuppressWarnings("rawtypes")
         JComboBox listOfClients = new JComboBox<String>(list);
         listOfClients.setBorder(lineBorder);
         
