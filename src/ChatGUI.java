@@ -130,7 +130,7 @@ public class ChatGUI extends JFrame {
                 JOptionPane
                         .showMessageDialog(
                                 null,
-                                "This project is an instant messenger program written in Java by Eric Kong, Parth Mistry, and Robert Kim.\n"
+                                "This project is an instant messenger program written in Java by Eric Kong, Robert Kim, and Parth Mistry.\n"
                                         + "For this project, we have used Java GUI's and Java ServerSockets.\n"
                                         + "We hope you enjoy our program!",
                                 "About", JOptionPane.INFORMATION_MESSAGE, img);
