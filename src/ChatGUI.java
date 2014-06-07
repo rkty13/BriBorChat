@@ -78,6 +78,14 @@ public class ChatGUI extends JFrame {
 			user.writeObject(userClass.username);
 			user.flush();
 
+			if (!in.readBoolean()) {
+				JOptionPane
+						.showMessageDialog(null,
+								"Error: Username already taken. Please choose another one.");
+
+				System.exit(1);
+			}
+
 		} catch (IOException e) {
 			JOptionPane
 					.showMessageDialog(null,
