@@ -99,6 +99,7 @@ public class ChatGUI extends JFrame {
 		chatBox.setLineWrap(true);
 		sendButton = new JButton();
 		aboutButton = new JButton("About");
+		chatBox.setFont(new Font("eras light itc", Font.PLAIN, 15));
 
 		rand = new Random();
 		r = rand.nextFloat();
@@ -139,39 +140,39 @@ public class ChatGUI extends JFrame {
 		fontAction.add(fontSizeAction);
 
 		optionsMenu.add(fontAction);
-
+		
 		size12.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				// Code to select a font size
+				chatBox.setFont(new Font("eras light itc", Font.PLAIN, 12));
 			}
 		});
 
 		size13.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				// Code to select a font size
+				chatBox.setFont(new Font("eras light itc", Font.PLAIN, 13));
 			}
 		});
 
 		size14.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				// Code to select a font size
+				chatBox.setFont(new Font("eras light itc", Font.PLAIN, 14));
 			}
 		});
 
 		size15.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				// Code to select a font size
+				chatBox.setFont(new Font("eras light itc", Font.PLAIN, 15));
 			}
 		});
 
 		size16.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				// Code to select a font size
+				chatBox.setFont(new Font("eras light itc", Font.PLAIN, 16));
 			}
 		});
 
@@ -262,7 +263,6 @@ public class ChatGUI extends JFrame {
 		if (message.trim().equals("")) {
 		} else {
 			MessageBox.setText("");
-			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
 			// chatBox.setForeground(randCol1);
 
 			if (message.charAt(0) == '!' && message.length() != 1) {
@@ -303,7 +303,6 @@ public class ChatGUI extends JFrame {
 				.equals("82a0ca8043d31417a307bb3627ec135b74f36d0b7f41a8410616fb593fdf6c42")) {
 			names = list[1];
 		} else {
-			chatBox.setFont(new Font("ar bonnie", Font.PLAIN, 15));
 			// chatBox.setForeground(randCol2);
 			chatBox.append(message);
 			chatBox.append("\n");
