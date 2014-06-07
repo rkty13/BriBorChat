@@ -106,7 +106,7 @@ public class chatRoomGUI extends JFrame {
                     "Please enter your name before entering the chat.",
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            chatRoomName = "BBChat ~ Room #1";
+            chatRoomName = "BBChat ~ Room";
             new ChatGUI();
         }
     }
