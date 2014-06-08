@@ -172,3 +172,16 @@ class Username implements Serializable {
 		return username;
 	}
 }
+
+@SuppressWarnings("serial")
+class ServerMessage implements Serializable {
+	public Object packet;
+
+	public ServerMessage(Object packet) {
+		this.packet = packet;
+	}
+
+	public Object getPacket() {
+		return packet;
+	}
+}
