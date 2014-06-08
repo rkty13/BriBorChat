@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.sound.sampled.AudioFormat;
@@ -52,6 +53,7 @@ public class ChatGUI extends JFrame {
 	private static Color randCol1, randCol2;
 	private static float r, g, b, r2, g2, b2;
 	public static String senderName;
+	private static ArrayList<String> styleList;
 
 	private static AudioInputStream stream, stream2;
 	private static AudioFormat x, x2;
@@ -110,6 +112,18 @@ public class ChatGUI extends JFrame {
 		g2 = rand.nextFloat();
 		b2 = rand.nextFloat();
 		randCol2 = new Color(r2, g2, b2);
+		
+		/**
+		 * HERE ARE THE FONT STYLES
+		//styleList.add("ar blanca");
+		//styleList.add("arial");
+		//styleList.add("calibri");
+		//styleList.add("eras light itc");
+		//styleList.add("impact");
+		//styleList.add("magneto");
+		//styleList.add("microsoft himalaya");
+		//styleList.add("times new roman");
+		*/
 
 		JMenuBar menubar = new JMenuBar();
 		setJMenuBar(menubar);
