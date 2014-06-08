@@ -54,6 +54,8 @@ public class ChatGUI extends JFrame {
 	private static float r, g, b, r2, g2, b2;
 	public static String senderName;
 	private static ArrayList<String> styleList;
+	private static int currentSize = 15;
+	private static String currentStyle = "eras light itc";
 
 	private static AudioInputStream stream, stream2;
 	private static AudioFormat x, x2;
@@ -138,7 +140,7 @@ public class ChatGUI extends JFrame {
 		ButtonGroup b = new ButtonGroup();
 		JRadioButtonMenuItem arial = new JRadioButtonMenuItem("Arial");
 		JRadioButtonMenuItem calibri = new JRadioButtonMenuItem("Calibri");
-		JRadioButtonMenuItem eras = new JRadioButtonMenuItem("Eras Light itc");
+		JRadioButtonMenuItem eras = new JRadioButtonMenuItem("Eras Light ITC");
 		JRadioButtonMenuItem impact = new JRadioButtonMenuItem("Impact");
 		JRadioButtonMenuItem magneto = new JRadioButtonMenuItem("Magneto");
 		JRadioButtonMenuItem microsoft = new JRadioButtonMenuItem("Microsoft Himalaya");
@@ -183,49 +185,56 @@ public class ChatGUI extends JFrame {
 		arial.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+            	chatBox.setFont(new Font("arial", Font.PLAIN, currentSize));
+            	currentStyle = "arial";
             }
         });
 		
 		calibri.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+            	chatBox.setFont(new Font("calibri", Font.PLAIN, currentSize));
+            	currentStyle = "calibri";
             }
         });
 		
 		eras.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+            	chatBox.setFont(new Font("eras light itc", Font.PLAIN, currentSize));
+            	currentStyle = "eras light itc";
             }
         });
 		
 		impact.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+            	chatBox.setFont(new Font("impact", Font.PLAIN, currentSize));
+            	currentStyle = "impact";
             }
         });
 		
 		magneto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+            	chatBox.setFont(new Font("magneto", Font.PLAIN, currentSize));
+            	currentStyle = "magneto";
             }
         });
 		
 		microsoft.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+            	chatBox.setFont(new Font("microsoft himalaya", Font.PLAIN, currentSize));
+            	currentStyle = "microsoft himalaya";
             }
         });
 		
 		times.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+            	chatBox.setFont(new Font("times new roman", Font.PLAIN, currentSize));
+            	currentStyle = "times new roman";
             }
         });
 		
@@ -233,35 +242,40 @@ public class ChatGUI extends JFrame {
 		size12.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				chatBox.setFont(new Font("eras light itc", Font.PLAIN, 12));
+				chatBox.setFont(new Font(currentStyle, Font.PLAIN, 12));
+				currentSize = 12;
 			}
 		});
 
 		size13.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				chatBox.setFont(new Font("eras light itc", Font.PLAIN, 13));
+				chatBox.setFont(new Font(currentStyle, Font.PLAIN, 13));
+				currentSize = 13;
 			}
 		});
 
 		size14.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				chatBox.setFont(new Font("eras light itc", Font.PLAIN, 14));
+				chatBox.setFont(new Font(currentStyle, Font.PLAIN, 14));
+				currentSize = 14;
 			}
 		});
 
 		size15.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				chatBox.setFont(new Font("eras light itc", Font.PLAIN, 15));
+				chatBox.setFont(new Font(currentStyle, Font.PLAIN, 15));
+				currentSize = 15;
 			}
 		});
 
 		size16.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				chatBox.setFont(new Font("eras light itc", Font.PLAIN, 16));
+				chatBox.setFont(new Font(currentStyle, Font.PLAIN, 16));
+				currentSize = 16;
 			}
 		});
 
