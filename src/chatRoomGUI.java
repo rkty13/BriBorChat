@@ -95,9 +95,7 @@ public class chatRoomGUI extends JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             name = new JLabel(temp);
-            nameField.setEditable(false);
-            // name.setForeground(Color.RED);
-            // JOptionPane.showMessageDialog(null, name);
+            //nameField.setEditable(false);
         }
         nameField.setText("");
     }
