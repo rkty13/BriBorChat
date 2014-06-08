@@ -133,6 +133,32 @@ public class ChatGUI extends JFrame {
 		menubar.add(optionsMenu);
 
 		JMenu fontAction = new JMenu("Font");
+		
+		JMenu fontStyleAction = new JMenu("Style");
+		ButtonGroup b = new ButtonGroup();
+		JRadioButtonMenuItem arial = new JRadioButtonMenuItem("Arial");
+		JRadioButtonMenuItem calibri = new JRadioButtonMenuItem("Calibri");
+		JRadioButtonMenuItem eras = new JRadioButtonMenuItem("Eras Light itc");
+		JRadioButtonMenuItem impact = new JRadioButtonMenuItem("Impact");
+		JRadioButtonMenuItem magneto = new JRadioButtonMenuItem("Magneto");
+		JRadioButtonMenuItem microsoft = new JRadioButtonMenuItem("Microsoft Himalaya");
+		JRadioButtonMenuItem times = new JRadioButtonMenuItem("Times New Roman");
+		b.add(arial);
+		b.add(calibri);
+		b.add(eras);
+		b.add(impact);
+		b.add(magneto);
+		b.add(microsoft);
+		b.add(times);
+		fontStyleAction.add(arial);
+        fontStyleAction.add(calibri);
+        fontStyleAction.add(eras);
+        fontStyleAction.add(impact);
+        fontStyleAction.add(magneto);
+        fontStyleAction.add(microsoft);
+        fontStyleAction.add(times);
+        fontAction.add(fontStyleAction);
+        
 		JMenu fontSizeAction = new JMenu("Size");
 		ButtonGroup bg = new ButtonGroup();
 		JRadioButtonMenuItem size12 = new JRadioButtonMenuItem("12");
@@ -150,10 +176,59 @@ public class ChatGUI extends JFrame {
 		fontSizeAction.add(size14);
 		fontSizeAction.add(size15);
 		fontSizeAction.add(size16);
-
 		fontAction.add(fontSizeAction);
-
+		
 		optionsMenu.add(fontAction);
+		
+		arial.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+		
+		calibri.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+		
+		eras.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+		
+		impact.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+		
+		magneto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+		
+		microsoft.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+		
+		times.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+		
 		
 		size12.addActionListener(new ActionListener() {
 			@Override
