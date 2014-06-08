@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,6 +35,7 @@ public class chatRoomGUI extends JFrame {
         });
 
         chatRoom1 = new JButton("Enter Chat Room");
+        chatRoom1.setMnemonic(KeyEvent.VK_E);
         //chatRoom2 = new JButton("Enter Chat Room # 2");
 
         chatRoom1.addActionListener(new ActionListener() {
