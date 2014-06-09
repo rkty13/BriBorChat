@@ -18,6 +18,8 @@ public class Server {
 	@SuppressWarnings("resource")
 	public Server() {
 		clients = new ArrayList<HandleClient>();
+		
+		// initialize ServerSocket and listen for connections
 		ServerSocket serverSocket = null;
 		try {
 			serverSocket = new ServerSocket(18304);
@@ -25,15 +27,20 @@ public class Server {
 			int clientNum = 1;
 
 			while (true) {
+			    // listen for client connection
 				Socket connection = null;
 				String username = null;
 				ObjectInputStream inputName = null;
 				try {
+				    // accept client connection
 					connection = serverSocket.accept();
 					inputName = new ObjectInputStream(
 							connection.getInputStream());
+					
+					// receive username from client
 					username = (String) inputName.readObject();
 
+					// check if username given by client is taken
 					new DataOutputStream(connection.getOutputStream())
 							.writeBoolean(checkUserTaken(username));
 
@@ -59,7 +66,9 @@ public class Server {
 			e.printStackTrace();
 		}
 	}
-
+	
+	
+	// removes client from ArrayList of connected clients
 	public static void remove(int clientNum) {
 		for (int i = 0; i < clients.size(); i++) {
 			if (clients.get(i).clientNum == clientNum) {
@@ -68,7 +77,8 @@ public class Server {
 		}
 		// updateUserList();
 	}
-
+	
+	// writes messages to all clients
 	public static void writeToAll(String message, int clientNum,
 			String fromUsername) {
 		for (HandleClient client : clients) {
@@ -85,6 +95,7 @@ public class Server {
 		}
 	}
 
+	// updates client ArrayList
 	public static void updateUserList() {
 		StringBuilder sb = new StringBuilder();
 		for (HandleClient name : clients) {
@@ -105,6 +116,7 @@ public class Server {
 		}
 	}
 
+	// checks if username is taken by another client, returns a boolean
 	public boolean checkUserTaken(String username) {
 		for (HandleClient client : clients) {
 			if (client.username.equalsIgnoreCase(username)) {
