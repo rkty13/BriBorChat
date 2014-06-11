@@ -58,7 +58,7 @@ public class Server {
                 clients.add(task);
 
                 new Thread(task).start();
-                updateUserList();
+                // updateUserList();
                 clientNum++;
 
             }
@@ -74,7 +74,7 @@ public class Server {
                 clients.remove(i);
             }
         }
-        updateUserList();
+        // updateUserList();
     }
 
     // writes messages to all clients
@@ -95,23 +95,15 @@ public class Server {
     }
 
     // updates client ArrayList
-    public static void updateUserList() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("updateUserList:");
-        for (HandleClient name : clients) {
-            System.out.println(name);
-            sb.append(name.username + " ");
-        }
-        for (HandleClient client : clients) {
-            try {
-                client.sendServerCommand(sb.toString());
-            } catch (IOException e) {
-                System.err.println("Error sending user list to client # "
-                        + client.clientNum);
-                continue;
-            }
-        }
-    }
+    /*
+     * public static void updateUserList() { StringBuilder sb = new
+     * StringBuilder(); sb.append("updateUserList:"); for (HandleClient name :
+     * clients) { System.out.println(name); sb.append(name.username + " "); }
+     * for (HandleClient client : clients) { try {
+     * client.sendServerCommand(sb.toString()); } catch (IOException e) {
+     * System.err.println("Error sending user list to client # " +
+     * client.clientNum); continue; } } }
+     */
 
     // checks if username is taken by another client, returns a boolean
     public boolean checkUserTaken(String username) {
@@ -130,7 +122,8 @@ class HandleClient implements Runnable {
     private DataInputStream in;
     private DataOutputStream out;
     public String username;
-    private ObjectOutputStream serverOut;
+
+    // private ObjectOutputStream serverOut;
 
     public HandleClient(Socket connection, int clientNum, String username) {
         this.connection = connection;
@@ -144,7 +137,7 @@ class HandleClient implements Runnable {
 
             in = new DataInputStream(connection.getInputStream());
             out = new DataOutputStream(connection.getOutputStream());
-            serverOut = new ObjectOutputStream(connection.getOutputStream());
+            // serverOut = new ObjectOutputStream(connection.getOutputStream());
 
             while (true) {
                 try {
@@ -169,10 +162,10 @@ class HandleClient implements Runnable {
             throws IOException {
         out.writeUTF(fromUsername + ": " + message);
     }
-
-    public void sendServerCommand(String command) throws IOException {
-        serverOut.writeUTF(command);
-    }
+    /*
+     * public void sendServerCommand(String command) throws IOException {
+     * serverOut.writeUTF(command); }
+     */
 }
 
 @SuppressWarnings("serial")

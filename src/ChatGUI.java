@@ -76,7 +76,6 @@ public class ChatGUI extends JFrame {
             socket = new Socket("67.81.222.76", 18304);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-            serverIn = new ObjectInputStream(socket.getInputStream());
 
             ObjectOutputStream user = new ObjectOutputStream(
                     socket.getOutputStream());
@@ -359,15 +358,10 @@ public class ChatGUI extends JFrame {
             }
         };
         receiving.start();
-
-        Thread receivingServer = new Thread() {
-            public void run() {
-                while (true) {
-                    receiveServer();
-                }
-            }
-        };
-        receivingServer.start();
+        /*
+         * Thread receivingServer = new Thread() { public void run() { while
+         * (true) { receiveServer(); } } }; receivingServer.start();
+         */
     }
 
     public void sendMessage() {
@@ -447,20 +441,14 @@ public class ChatGUI extends JFrame {
             e.printStackTrace();
         }
     }
-
-    public void receiveServer() {
-        try {
-            String input = serverIn.readUTF();
-            String[] command = input.split(":");
-            if (command[0].equalsIgnoreCase("updateUserList")) {
-                updateUserList(command[1]);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void updateUserList(String userlist) {
-        listOfClients = new JComboBox<String>(userlist.split(" "));
-    }
+    /*
+     * public void receiveServer() { try { String input = serverIn.readUTF();
+     * String[] command = input.split(":"); if
+     * (command[0].equalsIgnoreCase("updateUserList")) {
+     * updateUserList(command[1]); } } catch (IOException e) {
+     * e.printStackTrace(); } }
+     * 
+     * public void updateUserList(String userlist) { listOfClients = new
+     * JComboBox<String>(userlist.split(" ")); }
+     */
 }
