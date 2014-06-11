@@ -5,13 +5,16 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
 import java.net.Socket;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -22,6 +25,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -388,14 +392,21 @@ public class ChatGUI extends JFrame {
                         e2.printStackTrace();
                     }
                     clip2.loop(100);
-                }
-                if (message.trim().equalsIgnoreCase("!StopMusic")) {
+                } else if (message.trim().equalsIgnoreCase("!stopmusic")) {
                     clip2.stop();
+                } else if (message.trim().equalsIgnoreCase("!help")) {
+                    chatBox.append("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+                            + "LIST OF COMMANDS\n" + "Format - !<command>\n"
+                            + "help - list commands\n" + "music - play music\n"
+                            + "stopmusic - stop music playing\n"
+                            + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+                } else {
+                    chatBox.append("Unknown command '" + message.substring(1)
+                            + "'.");
                 }
             } else {
                 send(message);
-                chatBox.append(n + ": " + message);
-                chatBox.append("\n");
+                chatBox.append(n + ": " + message + "\n");
             }
         }
     }
