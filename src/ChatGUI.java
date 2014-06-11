@@ -1,5 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -19,7 +18,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,7 +33,6 @@ import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import javax.swing.text.DefaultCaret;
 
 public class ChatGUI extends JFrame {
@@ -297,21 +294,11 @@ public class ChatGUI extends JFrame {
         final JPanel aboutPanel = new JPanel();
         aboutPanel.add(aboutButton);
 
-        Border lineBorder = BorderFactory.createLineBorder(Color.black);
-        listOfClients = new JComboBox<String>();
-        listOfClients.setBorder(lineBorder);
-
-        final JPanel clients = new JPanel();
-        clients.setLayout(new BorderLayout());
-        clients.add(new JLabel("Users on this server:"), BorderLayout.CENTER);
-        clients.add(listOfClients, BorderLayout.SOUTH);
-
         final Container mainPanel = getContentPane();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(chatPanel, BorderLayout.NORTH);
         mainPanel.add(textPanel, BorderLayout.CENTER);
         mainPanel.add(aboutPanel, BorderLayout.SOUTH);
-        mainPanel.add(clients, BorderLayout.EAST);
 
         chatRoomGUI.setDefaultUI();
         pack();
