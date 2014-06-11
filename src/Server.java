@@ -9,7 +9,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server {
-
     public static ArrayList<HandleClient> clients;
 
     public static void main(String[] args) {

@@ -375,8 +375,6 @@ public class ChatGUI extends JFrame {
         if (message.trim().equals("")) {
         } else {
             MessageBox.setText("");
-            // chatBox.setForeground(randCol1);
-
             if (message.charAt(0) == '!' && message.length() != 1) {
                 if (message.trim().equalsIgnoreCase("!music")) {
                     File file = new File("src/resources/rickroll.wav");
