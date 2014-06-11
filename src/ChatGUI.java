@@ -11,8 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Random;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -46,12 +44,7 @@ public class ChatGUI extends JFrame {
     private static JButton sendButton, aboutButton;
     private static JTextArea chatBox;
     private static String n = chatRoomGUI.name.getText();
-    private static String names;
-    private static Random rand;
-    private static Color randCol1, randCol2;
-    private static float r, g, b, r2, g2, b2;
     public static String senderName;
-    private static ArrayList<String> styleList;
     private static int currentSize = 15;
     private static String currentStyle = "eras light itc";
     public static JComboBox<String> listOfClients;
@@ -103,24 +96,6 @@ public class ChatGUI extends JFrame {
         sendButton = new JButton();
         aboutButton = new JButton("About");
         chatBox.setFont(new Font("calibri", Font.PLAIN, 15));
-
-        rand = new Random();
-        r = rand.nextFloat();
-        g = rand.nextFloat();
-        b = rand.nextFloat();
-        randCol1 = new Color(r, g, b);
-        r2 = rand.nextFloat();
-        g2 = rand.nextFloat();
-        b2 = rand.nextFloat();
-        randCol2 = new Color(r2, g2, b2);
-
-        /**
-         * HERE ARE THE FONT STYLES //styleList.add("ar blanca");
-         * //styleList.add("arial"); //styleList.add("calibri");
-         * //styleList.add("eras light itc"); //styleList.add("impact");
-         * //styleList.add("magneto"); //styleList.add("microsoft himalaya");
-         * //styleList.add("times new roman");
-         */
 
         JMenuBar menubar = new JMenuBar();
         setJMenuBar(menubar);
