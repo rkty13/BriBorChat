@@ -60,8 +60,6 @@ public class ChatGUI extends JFrame {
 
         super(chatRoomGUI.chatRoomName);
 
-        Username userClass = new Username(n.trim());
-
         Socket socket = null;
         try {
             socket = new Socket("67.81.222.76", 18304);
@@ -70,7 +68,7 @@ public class ChatGUI extends JFrame {
 
             ObjectOutputStream user = new ObjectOutputStream(
                     socket.getOutputStream());
-            user.writeObject(userClass.username);
+            user.writeObject(n.trim());
             user.flush();
 
             if (!in.readBoolean()) {

@@ -17,7 +17,6 @@ import javax.swing.UIManager;
 public class chatRoomGUI extends JFrame {
     private static final long serialVersionUID = 1L;
     private static JButton selectNameButton, chatRoom1;
-    // private static JButton chatRoom2;
     private static JTextField nameField;
     public static JLabel name;
     public static String chatRoomName;
@@ -36,7 +35,6 @@ public class chatRoomGUI extends JFrame {
 
         chatRoom1 = new JButton("Enter Chat Room");
         chatRoom1.setMnemonic(KeyEvent.VK_E);
-        // chatRoom2 = new JButton("Enter Chat Room # 2");
 
         chatRoom1.addActionListener(new ActionListener() {
             @Override
@@ -44,12 +42,6 @@ public class chatRoomGUI extends JFrame {
                 enterChat1();
             }
         });
-        /*
-         * chatRoom2.addActionListener(new ActionListener() {
-         * 
-         * @Override public void actionPerformed(final ActionEvent ae) {
-         * enterChat2(); } });
-         */
 
         JRootPane rootPane = getRootPane();
         rootPane.setDefaultButton(selectNameButton);
@@ -63,18 +55,12 @@ public class chatRoomGUI extends JFrame {
 
         final JPanel chatRoomButtons = new JPanel();
         chatRoomButtons.add(chatRoom1);
-        // chatRoomButtons.add(chatRoom2);
-
-        // final JPanel warningPanel = new JPanel();
-        // warningPanel.add(new JLabel(
-        // "*Warning: Please do not enter both chat rooms at once.*"));
 
         final Container mainPanel = getContentPane();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(inputPanel, BorderLayout.CENTER);
         mainPanel.add(selectNamePanel, BorderLayout.SOUTH);
         mainPanel.add(chatRoomButtons, BorderLayout.NORTH);
-        // mainPanel.add(warningPanel, BorderLayout.SOUTH);
 
         setDefaultUI();
         pack();
@@ -108,15 +94,6 @@ public class chatRoomGUI extends JFrame {
         }
     }
 
-    /*
-     * private void enterChat2() { if (name == null) {
-     * JOptionPane.showMessageDialog(null,
-     * "Please enter your name before entering the chat.", "Error",
-     * JOptionPane.ERROR_MESSAGE); } else { chatRoomName = "BBChat ~ Room #2";
-     * new ChatGUI(); }
-     * 
-     * }
-     */
     public static void setDefaultUI() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
