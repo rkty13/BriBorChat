@@ -379,17 +379,17 @@ public class ChatGUI extends JFrame {
                     try {
                         stream2 = AudioSystem.getAudioInputStream(file);
                         x2 = stream2.getFormat();
-                    } catch (UnsupportedAudioFileException | IOException e1) {
-                        e1.printStackTrace();
+                    } catch (UnsupportedAudioFileException | IOException e) {
+                        JOptionPane.showMessageDialog(null,
+                                "Error: Music audio file cannot be played.");
                     }
                     DataLine.Info info = new DataLine.Info(Clip.class, x2);
                     try {
                         clip2 = (Clip) AudioSystem.getLine(info);
                         clip2.open(stream2);
-                    } catch (LineUnavailableException e1) {
-                        e1.printStackTrace();
-                    } catch (IOException e2) {
-                        e2.printStackTrace();
+                    } catch (LineUnavailableException | IOException e) {
+                        JOptionPane.showMessageDialog(null,
+                                "Error: Music audio file cannot be played.");
                     }
                     clip2.loop(100);
                 } else if (message.trim().equalsIgnoreCase("!stopmusic")) {
@@ -421,17 +421,17 @@ public class ChatGUI extends JFrame {
             try {
                 stream = AudioSystem.getAudioInputStream(file);
                 x = stream.getFormat();
-            } catch (UnsupportedAudioFileException | IOException e1) {
-                e1.printStackTrace();
+            } catch (UnsupportedAudioFileException | IOException e) {
+                JOptionPane.showMessageDialog(null,
+                        "Error: Chat sound audio file is of the wrong type.");
             }
             DataLine.Info info = new DataLine.Info(Clip.class, x);
             try {
                 clip = (Clip) AudioSystem.getLine(info);
                 clip.open(stream);
-            } catch (LineUnavailableException e1) {
-                e1.printStackTrace();
-            } catch (IOException e2) {
-                e2.printStackTrace();
+            } catch (LineUnavailableException | IOException e) {
+                JOptionPane.showMessageDialog(null,
+                        "Error: Chat sound audio file is of the wrong type.");
             }
             clip.start();
         }
@@ -441,7 +441,8 @@ public class ChatGUI extends JFrame {
         try {
             out.writeUTF(message);
         } catch (IOException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Error sending message. Please try again.");
         }
     }
 
@@ -449,7 +450,7 @@ public class ChatGUI extends JFrame {
         try {
             recieveMessage(in.readUTF());
         } catch (IOException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error contacting server.");
         }
     }
     /*

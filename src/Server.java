@@ -47,8 +47,12 @@ public class Server {
                     System.out.println("Client #" + clientNum
                             + " connected as '" + username + "'.");
                 } catch (IOException e) {
+                    System.err.println("Error connecting client to server.");
+                    e.printStackTrace();
                     continue;
                 } catch (ClassNotFoundException e) {
+                    System.err.println("Error receiving username from client #"
+                            + clientNum + ".");
                     e.printStackTrace();
                     continue;
                 }
@@ -63,6 +67,7 @@ public class Server {
 
             }
         } catch (IOException e) {
+            System.err.println("Error creating new ServerSocket.");
             e.printStackTrace();
         }
     }
@@ -154,6 +159,7 @@ class HandleClient implements Runnable {
             }
 
         } catch (IOException e) {
+            System.err.println("Error creating Data Input/Output Streams.");
             e.printStackTrace();
         }
     }
