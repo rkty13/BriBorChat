@@ -36,10 +36,10 @@ public class Server {
                     inputName = new ObjectInputStream(
                             connection.getInputStream());
 
-                    // receive username from client
+                    // receive user name from client
                     username = (String) inputName.readObject();
 
-                    // check if username given by client is taken
+                    // check if user name given by client is taken
                     new DataOutputStream(connection.getOutputStream())
                             .writeBoolean(checkUserTaken(username));
 
@@ -96,7 +96,7 @@ public class Server {
         }
     }
 
-    // checks if username is taken by another client, returns a boolean
+    // checks if user name is taken by another client, returns a boolean
     public boolean checkUserTaken(String username) {
         for (HandleClient client : clients) {
             if (client.username.equalsIgnoreCase(username)) {
