@@ -5,19 +5,14 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
 import java.net.Socket;
-
 import java.util.ArrayList;
 import java.util.Random;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -25,7 +20,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -67,7 +61,6 @@ public class ChatGUI extends JFrame {
 
     private DataInputStream in;
     private DataOutputStream out;
-    private ObjectInputStream serverIn;
 
     public ChatGUI() {
 
@@ -362,10 +355,6 @@ public class ChatGUI extends JFrame {
             }
         };
         receiving.start();
-        /*
-         * Thread receivingServer = new Thread() { public void run() { while
-         * (true) { receiveServer(); } } }; receivingServer.start();
-         */
     }
 
     public void sendMessage() {
@@ -453,14 +442,4 @@ public class ChatGUI extends JFrame {
             JOptionPane.showMessageDialog(null, "Error contacting server.");
         }
     }
-    /*
-     * public void receiveServer() { try { String input = serverIn.readUTF();
-     * String[] command = input.split(":"); if
-     * (command[0].equalsIgnoreCase("updateUserList")) {
-     * updateUserList(command[1]); } } catch (IOException e) {
-     * e.printStackTrace(); } }
-     * 
-     * public void updateUserList(String userlist) { listOfClients = new
-     * JComboBox<String>(userlist.split(" ")); }
-     */
 }
