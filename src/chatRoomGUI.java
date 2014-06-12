@@ -88,6 +88,7 @@ public class chatRoomGUI extends JFrame {
             JOptionPane.showMessageDialog(null,
                     "Please enter your name before entering the chat.",
                     "Error", JOptionPane.ERROR_MESSAGE);
+
         } else {
             chatRoomName = "BBChat ~ Room";
             new ChatGUI();

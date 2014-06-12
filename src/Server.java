@@ -138,9 +138,9 @@ class HandleClient implements Runnable {
 				} catch (Exception e) {
 					System.err.println("Client #" + clientNum
 							+ " disconnected.");
+					Server.remove(clientNum);
 					Server.writeToAll("'" + username + "' left the chat room.",
 							-1, "SERVER");
-					Server.remove(clientNum);
 					break;
 				}
 			}
