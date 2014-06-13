@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -329,9 +328,10 @@ public class ChatGUI extends JFrame {
 			MessageBox.setText("");
 			if (message.charAt(0) == '!' && message.length() != 1) {
 				if (message.trim().equalsIgnoreCase("!music")) {
-					File file = new File("resources/rickroll.wav");
 					try {
-						stream2 = AudioSystem.getAudioInputStream(file);
+						stream2 = AudioSystem.getAudioInputStream(this
+								.getClass().getResourceAsStream(
+										"resources/rickroll.wav"));
 						x2 = stream2.getFormat();
 					} catch (UnsupportedAudioFileException | IOException e) {
 						JOptionPane.showMessageDialog(null,
@@ -370,10 +370,9 @@ public class ChatGUI extends JFrame {
 		} else {
 			chatBox.append(message);
 			chatBox.append("\n");
-			File file = new File(this.getClass()
-					.getResource("resources/chatsound.WAV").toURI());
 			try {
-				stream = AudioSystem.getAudioInputStream(file);
+				stream = AudioSystem.getAudioInputStream(this.getClass()
+						.getResourceAsStream("resources/chatsound.WAV"));
 				x = stream.getFormat();
 			} catch (UnsupportedAudioFileException | IOException e) {
 				JOptionPane.showMessageDialog(null,
