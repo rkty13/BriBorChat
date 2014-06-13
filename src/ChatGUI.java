@@ -100,7 +100,7 @@ public class ChatGUI extends JFrame {
 		menubar.add(optionsMenu);
 
 		JMenu fontAction = new JMenu("Font");
-		fontAction.setMnemonic(KeyEvent.VK_M);
+		fontAction.setMnemonic(KeyEvent.VK_F);
 
 		JMenu fontStyleAction = new JMenu("Style");
 		ButtonGroup b = new ButtonGroup();
