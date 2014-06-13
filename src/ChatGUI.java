@@ -302,7 +302,7 @@ public class ChatGUI extends JFrame {
 
 		chatRoomGUI.setDefaultUI();
 		pack();
-		setIconImage(new ImageIcon("src/resources/bb2.jpg").getImage());
+		setIconImage(new ImageIcon("resources/bb2.jpg").getImage());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -325,7 +325,7 @@ public class ChatGUI extends JFrame {
 			MessageBox.setText("");
 			if (message.charAt(0) == '!' && message.length() != 1) {
 				if (message.trim().equalsIgnoreCase("!music")) {
-					File file = new File("src/resources/rickroll.wav");
+					File file = new File("resources/rickroll.wav");
 					try {
 						stream2 = AudioSystem.getAudioInputStream(file);
 						x2 = stream2.getFormat();
@@ -367,7 +367,7 @@ public class ChatGUI extends JFrame {
 			// chatBox.setForeground(randCol2);
 			chatBox.append(message);
 			chatBox.append("\n");
-			File file = new File("src/resources/chatsound.WAV");
+			File file = new File("resources/chatsound.WAV");
 			try {
 				stream = AudioSystem.getAudioInputStream(file);
 				x = stream.getFormat();
