@@ -256,7 +256,7 @@ public class ChatGUI extends JFrame {
 		chatBox.setEditable(false);
 
 		sendButton.setMnemonic(KeyEvent.VK_S);
-		ImageIcon buttonImage = new ImageIcon("resources/bb.jpg");
+		ImageIcon buttonImage = new ImageIcon("src/resources/bb.jpg");
 		sendButton.setIcon(buttonImage);
 
 		sendButton.addActionListener(new ActionListener() {
@@ -270,7 +270,7 @@ public class ChatGUI extends JFrame {
 		aboutButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent ae) {
-				ImageIcon img = new ImageIcon("resources/bb.jpg");
+				ImageIcon img = new ImageIcon("src/resources/bb.jpg");
 				JOptionPane
 						.showMessageDialog(
 								null,
@@ -302,7 +302,7 @@ public class ChatGUI extends JFrame {
 
 		chatRoomGUI.setDefaultUI();
 		pack();
-		setIconImage(new ImageIcon("resources/bb2.jpg").getImage());
+		setIconImage(new ImageIcon("src/resources/bb2.jpg").getImage());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -325,7 +325,7 @@ public class ChatGUI extends JFrame {
 			MessageBox.setText("");
 			if (message.charAt(0) == '!' && message.length() != 1) {
 				if (message.trim().equalsIgnoreCase("!music")) {
-					File file = new File("resources/rickroll.wav");
+					File file = new File("src/resources/rickroll.wav");
 					try {
 						stream2 = AudioSystem.getAudioInputStream(file);
 						x2 = stream2.getFormat();
@@ -367,7 +367,7 @@ public class ChatGUI extends JFrame {
 			// chatBox.setForeground(randCol2);
 			chatBox.append(message);
 			chatBox.append("\n");
-			File file = new File("resources/chatsound.WAV");
+			File file = new File("src/resources/chatsound.WAV");
 			try {
 				stream = AudioSystem.getAudioInputStream(file);
 				x = stream.getFormat();
