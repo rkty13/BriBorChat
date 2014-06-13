@@ -43,7 +43,7 @@ public class ChatGUI extends JFrame {
 	private static String n = chatRoomGUI.name.getText();
 	public static String senderName;
 	private static int currentSize = 15;
-	private static String currentStyle = "eras light itc";
+	private static String currentStyle = "calibri";
 	public static JComboBox<String> listOfClients;
 
 	private static AudioInputStream stream, stream2;
@@ -90,7 +90,7 @@ public class ChatGUI extends JFrame {
 		chatBox.setLineWrap(true);
 		sendButton = new JButton();
 		aboutButton = new JButton("About");
-		chatBox.setFont(new Font("calibri", Font.PLAIN, 15));
+		chatBox.setFont(new Font(currentStyle, Font.PLAIN, currentSize));
 
 		JMenuBar menubar = new JMenuBar();
 		setJMenuBar(menubar);
