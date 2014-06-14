@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UIManager.*;
 
 public class chatRoomGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -62,13 +64,13 @@ public class chatRoomGUI extends JFrame {
 		mainPanel.add(selectNamePanel, BorderLayout.SOUTH);
 		mainPanel.add(chatRoomButtons, BorderLayout.NORTH);
 
-		setDefaultUI();
 		pack();
 		setIconImage(new ImageIcon(this.getClass().getResource(
-				"resources/bb2.jpg")).getImage());
+		        "resources/bb2.jpg")).getImage());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
+		setDefaultUI();
 		setVisible(true);
 	}
 
@@ -76,7 +78,7 @@ public class chatRoomGUI extends JFrame {
 		String temp = nameField.getText().trim();
 		if (temp.equals("") && nameField.isEditable() == true) {
 			JOptionPane.showMessageDialog(null, "Your name cannot be blank!",
-					"Error", JOptionPane.ERROR_MESSAGE);
+			        "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			name = new JLabel(temp);
 			nameField.setEditable(false);
@@ -87,8 +89,8 @@ public class chatRoomGUI extends JFrame {
 	private void enterChat1() {
 		if (name == null) {
 			JOptionPane.showMessageDialog(null,
-					"Please enter your name before entering the chat.",
-					"Error", JOptionPane.ERROR_MESSAGE);
+			        "Please enter your name before entering the chat.",
+			        "Error", JOptionPane.ERROR_MESSAGE);
 
 		} else {
 			chatRoomName = "BBChat ~ Room";
@@ -99,8 +101,18 @@ public class chatRoomGUI extends JFrame {
 	public static void setDefaultUI() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			/*
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+			*/
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Error: Cannot set default UI");
+			JOptionPane.showMessageDialog(null,
+			        "Error: Look and Feel not set.", "Error",
+			        JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
