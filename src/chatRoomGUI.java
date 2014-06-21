@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UIManager.*;
 
 public class chatRoomGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
